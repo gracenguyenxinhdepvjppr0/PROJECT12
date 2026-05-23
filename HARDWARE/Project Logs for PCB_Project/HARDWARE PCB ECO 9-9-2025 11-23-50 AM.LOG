@@ -1,0 +1,6 @@
+Change Component Designator: OldDesignator=NRST NewDesignator=SW1
+Change Component Designator: OldDesignator=Regulator NewDesignator=Regulator1
+Added Room: Name=Bat_indicator
+Added Room: Name=MCU
+Added Room: Name=POWER
+Added Room: Name=Regulator

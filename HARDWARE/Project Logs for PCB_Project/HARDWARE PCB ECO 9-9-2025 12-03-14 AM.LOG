@@ -1,0 +1,49 @@
+Removed Pin From Net: NetName=NetC3_1 Pin=DMT1-7
+Removed Pin From Net: NetName=NetC4_2 Pin=DMT1-8
+Removed Pin From Net: NetName=NetC3_1 Pin=DMT2-7
+Removed Pin From Net: NetName=NetC7_2 Pin=DMT2-8
+Change Component Designator: OldDesignator=C18 NewDesignator=C19
+Change Component Designator: OldDesignator=C19 NewDesignator=C18
+Change component parameters: Designator = "DMT1" ("DMT1"); Footprint = "TRANS_DMT6016LFDF-7"; UniqueID = "\RUJJQAZQ\CLVVBXDU" ("\RUJJQAZQ\CLVVBXDU")
+Change component parameters (AddParameter): Name = "Check_prices"; Value = "https://www.snapeda.com/parts/DMT6016LFDF-7/Diodes+Inc./view-part/?ref=eda"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "MF"; Value = "Diodes Inc."; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "MP"; Value = "DMT6016LFDF-7"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Package"; Value = "UDFN-6 Diodes Inc."; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "SnapEDA_Link"; Value = "https://www.snapeda.com/parts/DMT6016LFDF-7/Diodes+Inc./view-part/?ref=snap"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Value"; Value = ""; VariantName = "[No Variations]"
+Change component parameters: Designator = "DMT2" ("DMT2"); Footprint = "TRANS_DMT6016LFDF-7"; UniqueID = "\RUJJQAZQ\DHOXGFXE" ("\RUJJQAZQ\DHOXGFXE")
+Change component parameters (AddParameter): Name = "Check_prices"; Value = "https://www.snapeda.com/parts/DMT6016LFDF-7/Diodes+Inc./view-part/?ref=eda"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "MF"; Value = "Diodes Inc."; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "MP"; Value = "DMT6016LFDF-7"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Package"; Value = "UDFN-6 Diodes Inc."; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "SnapEDA_Link"; Value = "https://www.snapeda.com/parts/DMT6016LFDF-7/Diodes+Inc./view-part/?ref=snap"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Value"; Value = ""; VariantName = "[No Variations]"
+Added Pin To Net: NetName=NetC3_1 Pin=DMT1-1
+Added Pin To Net: NetName=NetC3_1 Pin=DMT1-2
+Added Pin To Net: NetName=NetC4_2 Pin=DMT1-4
+Added Pin To Net: NetName=NetC3_1 Pin=DMT1-5
+Added Pin To Net: NetName=NetC3_1 Pin=DMT1-6
+Added Pin To Net: NetName=NetC4_2 Pin=DMT1-7
+Added Pin To Net: NetName=NetC3_1 Pin=DMT1-8
+Added Pin To Net: NetName=NetC3_1 Pin=DMT2-1
+Added Pin To Net: NetName=NetC3_1 Pin=DMT2-2
+Added Pin To Net: NetName=NetC7_2 Pin=DMT2-4
+Added Pin To Net: NetName=NetC3_1 Pin=DMT2-5
+Added Pin To Net: NetName=NetC3_1 Pin=DMT2-6
+Added Pin To Net: NetName=NetC7_2 Pin=DMT2-7
+Added Pin To Net: NetName=NetC3_1 Pin=DMT2-8
+Added Pin To Net: NetName=NetC4_2 Pin=LM1-4
+Added Pin To Net: NetName=NetC7_2 Pin=LM2-4
+Change Net Name : Old Net Name=NetC18_1 New Net Name=NetC19_1
+Change Net Name : Old Net Name=NetC19_2 New Net Name=NetC18_2
+Added Pin To Net: NetName=NetDMT1_3 Pin=DMT1-3
+Added Pin To Net: NetName=NetDMT1_3 Pin=LM1-2
+Added Pin To Net: NetName=NetDMT1_3 Pin=LM1-6
+Added Net: Name=NetDMT1_3
+Added Pin To Net: NetName=NetDMT2_3 Pin=DMT2-3
+Added Pin To Net: NetName=NetDMT2_3 Pin=LM2-2
+Added Pin To Net: NetName=NetDMT2_3 Pin=LM2-6
+Added Net: Name=NetDMT2_3
+Added Room: Name=Bat_indicator
+Added Room: Name=POWER
+Added Room: Name=Regulator

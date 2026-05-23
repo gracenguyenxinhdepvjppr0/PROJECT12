@@ -1,0 +1,2 @@
+Removed Pin From Net: NetName=I2C2_SDA Pin=MLX90640-4
+Added Pin To Net: NetName=I2C1_SDA Pin=MLX90640-4

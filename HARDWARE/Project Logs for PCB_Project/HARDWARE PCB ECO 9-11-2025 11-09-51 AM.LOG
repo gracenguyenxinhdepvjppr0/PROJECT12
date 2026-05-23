@@ -1,0 +1,9 @@
+Removed Pin From Net: NetName=SOUND_OUT Pin=STM1-23
+Change Component Description : Designator=DMT1 Old Description=Transistor, 60V, N-channel, enhancement mode MOSFET, 60V, U-DFN2020-6 New Description=Transistor, 60V, N-channel, enhancement mode MOSFET, 60V, U-DFN2020-6 | Diodes Inc DMT6016LFDF-7
+Change Component Description : Designator=DMT2 Old Description=Transistor, 60V, N-channel, enhancement mode MOSFET, 60V, U-DFN2020-6 New Description=Transistor, 60V, N-channel, enhancement mode MOSFET, 60V, U-DFN2020-6 | Diodes Inc DMT6016LFDF-7
+Added Pin To Net: NetName=SOUND_OUT Pin=STM1-22
+Added Member To Class: ClassName=Regulator Member=Component C27 100nF
+Added Room: Name=Bat_indicator
+Added Room: Name=MCU
+Added Room: Name=POWER
+Added Room: Name=Regulator

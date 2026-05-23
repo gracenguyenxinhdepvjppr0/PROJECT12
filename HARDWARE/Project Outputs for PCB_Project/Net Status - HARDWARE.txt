@@ -1,0 +1,62 @@
+Net Status Report
+Filename     : C:\Users\DANG\Documents\IOT_Giam_sat_tu_dien\PCB_Project\HARDWARE.PcbDoc
+Date         : 9/11/2025
+Time         : 12:37:41 PM
+Time Elapsed : 00:00:00
+
+Nets, Layer, Length
+    3V3, Signal Layers Only, 681.298mm
+    5V, Signal Layers Only, 0mm
+    ESP_RX, Signal Layers Only, 24.5195mm
+    ESP_TX, Signal Layers Only, 23.6719mm
+    E_SCLK, Signal Layers Only, 76.0466mm
+    E_SCS, Signal Layers Only, 85.1278mm
+    GND, Signal Layers Only, 136.1336mm
+    INT, Signal Layers Only, 0mm
+    IR_CAM_SCL, Signal Layers Only, 43.6943mm
+    IR_CAM_SDA, Signal Layers Only, 41.6977mm
+    LCD_SCL, Signal Layers Only, 20.633mm
+    LCD_SDA, Signal Layers Only, 15.4639mm
+    MCU VDDA, Signal Layers Only, 16.9939mm
+    MCU_BOOT0, Signal Layers Only, 15.0956mm
+    MCU_NRST, Signal Layers Only, 39.5335mm
+    MCU_OSC_IN, Signal Layers Only, 16.5536mm
+    MCU_OSC_OUT, Signal Layers Only, 13.9596mm
+    MCU_SWCLK, Signal Layers Only, 40.043mm
+    MCU_SWDIO, Signal Layers Only, 62.8539mm
+    MCU_SWO, Signal Layers Only, 41.6864mm
+    MISO, Signal Layers Only, 48.3895mm
+    MOSI, Signal Layers Only, 46.7583mm
+    NetBat_holder1_POS, Signal Layers Only, 25.3932mm
+    NetC18_2, Signal Layers Only, 3.7191mm
+    NetC19_1, Signal Layers Only, 4.952mm
+    NetC1_1, Signal Layers Only, 4.8054mm
+    NetC1_2, Signal Layers Only, 6.268mm
+    NetC2_1, Signal Layers Only, 36.9026mm
+    NetC3_1, Signal Layers Only, 66.1134mm
+    NetC4_2, Signal Layers Only, 37.5586mm
+    NetC5_1, Signal Layers Only, 4.8105mm
+    NetC5_2, Signal Layers Only, 6.9213mm
+    NetC7_2, Signal Layers Only, 49.6949mm
+    NetD1_2, Signal Layers Only, 19.6689mm
+    NetD2_2, Signal Layers Only, 18.5733mm
+    NetD3_2, Signal Layers Only, 16.703mm
+    NetD4_1, Signal Layers Only, 17.8511mm
+    NetD4_2, Signal Layers Only, 34.4084mm
+    NetD6_A, Signal Layers Only, 14.9097mm
+    NetD6_K, Signal Layers Only, 4.0893mm
+    NetD7_A, Signal Layers Only, 10.8645mm
+    NetD7_K, Signal Layers Only, 4.191mm
+    NetDMT1_3, Signal Layers Only, 9.7612mm
+    NetDMT2_3, Signal Layers Only, 9.7734mm
+    NetLED1_2, Signal Layers Only, 6.8097mm
+    NetLED2_2, Signal Layers Only, 6.8623mm
+    NetLED3_2, Signal Layers Only, 6.7098mm
+    NetLED4_2, Signal Layers Only, 7.0904mm
+    NetLED5_1, Signal Layers Only, 7.5564mm
+    NetQ1_2, Signal Layers Only, 8.1351mm
+    RST, Signal Layers Only, 0mm
+    SHT_SCL, Signal Layers Only, 15.8319mm
+    SHT_SDA, Signal Layers Only, 17.3401mm
+    SOUND_OUT, Signal Layers Only, 24.3133mm
+count : 54

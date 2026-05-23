@@ -1,0 +1,48 @@
+Removed Pin From Net: NetName=I2C1_SCL Pin=MLX1-2
+Removed Pin From Net: NetName=I2C1_SDA Pin=MLX1-3
+Removed Pin From Net: NetName=GND Pin=MLX1-4
+Removed Pin From Net: NetName=I2C3_SCL Pin=SHT1-2
+Removed Pin From Net: NetName=GND Pin=SHT1-4
+Change Component Designator: OldDesignator=MLX1 NewDesignator=MLX90640
+Change Component Designator: OldDesignator=SHT1 NewDesignator=SHT30
+Change Component Designator: OldDesignator=SPU1 NewDesignator=SPU0410LR5H-QB-7
+Change Component Designator: OldDesignator=W1 NewDesignator=W5500
+Added Pin To Net: NetName=GND Pin=MLX90640-2
+Added Pin To Net: NetName=I2C1_SCL Pin=MLX90640-3
+Added Pin To Net: NetName=I2C2_SDA Pin=MLX90640-4
+Added Pin To Net: NetName=GND Pin=SHT30-2
+Added Pin To Net: NetName=I2C3_SCL Pin=SHT30-4
+Added Member To Class: ClassName=MCU Member=Component BOOT1 SW-SMD
+Added Member To Class: ClassName=MCU Member=Component C1 100nF
+Added Member To Class: ClassName=MCU Member=Component C2 100nF
+Added Member To Class: ClassName=MCU Member=Component C3 100nF
+Added Member To Class: ClassName=MCU Member=Component C4 100nF
+Added Member To Class: ClassName=MCU Member=Component C5 100nF
+Added Member To Class: ClassName=MCU Member=Component C6 100nF
+Added Member To Class: ClassName=MCU Member=Component C7 100nF
+Added Member To Class: ClassName=MCU Member=Component C8 100nF
+Added Member To Class: ClassName=MCU Member=Component C9 100nF
+Added Member To Class: ClassName=MCU Member=Component C10 100nF
+Added Member To Class: ClassName=MCU Member=Component C11 4.7uF
+Added Member To Class: ClassName=MCU Member=Component C12 2.2uF
+Added Member To Class: ClassName=MCU Member=Component C13 2.2uF
+Added Member To Class: ClassName=MCU Member=Component C14 100nF
+Added Member To Class: ClassName=MCU Member=Component C15 1uF
+Added Member To Class: ClassName=MCU Member=Component C16 100nF
+Added Member To Class: ClassName=MCU Member=Component C17 1uF
+Added Member To Class: ClassName=MCU Member=Component C18 100nF
+Added Member To Class: ClassName=MCU Member=Component C19 100nF
+Added Member To Class: ClassName=MCU Member=Component C20 100nF
+Added Member To Class: ClassName=MCU Member=Component C21 100nF
+Added Member To Class: ClassName=MCU Member=Component C22 10pF
+Added Member To Class: ClassName=MCU Member=Component C23 10pF
+Added Member To Class: ClassName=MCU Member=Component C24 10pF
+Added Member To Class: ClassName=MCU Member=Component C25 10pF
+Added Member To Class: ClassName=MCU Member=Component E15 BLUE
+Added Member To Class: ClassName=Sensors Member=Component MLX90640 Header 4
+Added Member To Class: ClassName=MCU Member=Component NRST1 SW-SMD
+Added Member To Class: ClassName=MCU Member=Component R2 10K
+Added Member To Class: ClassName=MCU Member=Component R3 10K
+Added Member To Class: ClassName=Sensors Member=Component SHT30 Header 4
+Added Member To Class: ClassName=Sensors Member=Component SPU0410LR5H-QB-7 Jumper 3
+Added Member To Class: ClassName=MCU Member=Component SWD1 Header 4

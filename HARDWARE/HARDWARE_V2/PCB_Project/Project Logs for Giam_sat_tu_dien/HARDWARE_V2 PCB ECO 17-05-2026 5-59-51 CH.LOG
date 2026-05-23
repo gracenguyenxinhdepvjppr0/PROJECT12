@@ -1,0 +1,30 @@
+Removed Member From Class: ClassName=Power Member=C15
+Removed Member From Class: ClassName=Power Member=R2
+Change Component Designator: OldDesignator=E1 NewDesignator=E15
+Change Net Name : Old Net Name=NetE1_A New Net Name=NetE15_A
+Added Member To Class: ClassName=MCU Member=Component C1 100nF
+Added Member To Class: ClassName=MCU Member=Component C2 100nF
+Added Member To Class: ClassName=MCU Member=Component C3 100nF
+Added Member To Class: ClassName=MCU Member=Component C4 100nF
+Added Member To Class: ClassName=MCU Member=Component C5 100nF
+Added Member To Class: ClassName=MCU Member=Component C6 100nF
+Added Member To Class: ClassName=MCU Member=Component C7 100nF
+Added Member To Class: ClassName=MCU Member=Component C8 100nF
+Added Member To Class: ClassName=MCU Member=Component C9 100nF
+Added Member To Class: ClassName=MCU Member=Component C10 100nF
+Added Member To Class: ClassName=MCU Member=Component C11 4.7uF
+Added Member To Class: ClassName=MCU Member=Component C15 1uF
+Added Member To Class: ClassName=MCU Member=Component C16 100nF
+Added Member To Class: ClassName=MCU Member=Component C17 1uF
+Added Member To Class: ClassName=MCU Member=Component C18 100nF
+Added Member To Class: ClassName=MCU Member=Component C19 100nF
+Added Member To Class: ClassName=MCU Member=Component C20 100nF
+Added Member To Class: ClassName=MCU Member=Component C21 100nF
+Added Member To Class: ClassName=MCU Member=Component C22 10pF
+Added Member To Class: ClassName=MCU Member=Component C23 10pF
+Added Member To Class: ClassName=MCU Member=Component C24 10pF
+Added Member To Class: ClassName=MCU Member=Component C25 10pF
+Added Member To Class: ClassName=Power Member=Component C26 100nF
+Added Member To Class: ClassName=Power Member=Component C27 100nF
+Added Member To Class: ClassName=MCU Member=Component R3 10K
+Added Member To Class: ClassName=Power Member=Component R4 10K

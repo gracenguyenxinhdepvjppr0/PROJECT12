@@ -1,0 +1,114 @@
+Removed Pin From Net: NetName=GND Pin=C8-1
+Removed Pin From Net: NetName=3V3 Pin=C8-2
+Removed Pin From Net: NetName=GND Pin=C9-1
+Removed Pin From Net: NetName=3V3 Pin=C9-2
+Removed Pin From Net: NetName=GND Pin=C10-1
+Removed Pin From Net: NetName=3V3 Pin=C10-2
+Removed Pin From Net: NetName=GND Pin=C11-1
+Removed Pin From Net: NetName=3V3 Pin=C11-2
+Removed Pin From Net: NetName=GND Pin=C12-1
+Removed Pin From Net: NetName=3V3 Pin=C12-2
+Removed Pin From Net: NetName=GND Pin=C13-1
+Removed Pin From Net: NetName=3V3 Pin=C13-2
+Removed Pin From Net: NetName=GND Pin=C14-1
+Removed Pin From Net: NetName=3V3 Pin=C14-2
+Removed Pin From Net: NetName=GND Pin=C15-1
+Removed Pin From Net: NetName=3V3 Pin=C15-2
+Removed Pin From Net: NetName=GND Pin=C16-1
+Removed Pin From Net: NetName=3V3 Pin=C16-2
+Removed Pin From Net: NetName=GND Pin=C17-1
+Removed Pin From Net: NetName=GND Pin=C18-1
+Removed Pin From Net: NetName=GND Pin=C19-1
+Removed Pin From Net: NetName=MCU_NRST Pin=C19-2
+Removed Pin From Net: NetName=GND Pin=C21-1
+Removed Pin From Net: NetName=MCU_OSC_IN Pin=C21-2
+Removed Pin From Net: NetName=GND Pin=C22-1
+Removed Pin From Net: NetName=MCU_OSC_OUT Pin=C22-2
+Removed Pin From Net: NetName=GND Pin=C23-1
+Removed Pin From Net: NetName=MCU_OSC32_IN Pin=C23-2
+Change Component Footprint: Designator=C9 Old Footprint=CAP_0402 New Footprint=Cap 0805
+Change Component Footprint: Designator=C10 Old Footprint=CAP_0402 New Footprint=Cap 0805
+Change Component Footprint: Designator=C11 Old Footprint=CAP_0402 New Footprint=Cap 0805
+Change Component Footprint: Designator=C12 Old Footprint=CAP_0402 New Footprint=Cap 0805
+Change Component Footprint: Designator=C13 Old Footprint=CAP_0402 New Footprint=Cap 0805
+Change Component Footprint: Designator=C14 Old Footprint=CAP_0402 New Footprint=Cap 0805
+Change Component Footprint: Designator=C15 Old Footprint=CAP_0402 New Footprint=Cap 0805
+Change Component Footprint: Designator=C19 Old Footprint=CAP_0402 New Footprint=Cap 0805
+Change Component Footprint: Designator=C21 Old Footprint=CAP_0402 New Footprint=Cap 0805
+Change Component Footprint: Designator=C22 Old Footprint=CAP_0402 New Footprint=Cap 0805
+Change Component Footprint: Designator=C23 Old Footprint=CAP_0402 New Footprint=Cap 0805
+Change Component Footprint: Designator=C8 Old Footprint=CAP_0603 New Footprint=Cap 0805
+Change Component Footprint: Designator=C16 Old Footprint=CAP_0603 New Footprint=Cap 0805
+Change Component Footprint: Designator=C17 Old Footprint=CAP_0603 New Footprint=Cap 0805
+Change Component Footprint: Designator=C18 Old Footprint=CAP_0603 New Footprint=Cap 0805
+Change Component Footprint: Designator=R8 Old Footprint=RES_0402 New Footprint=RES-SMD-0101
+Change Component Footprint: Designator=R10 Old Footprint=RES_0402 New Footprint=RES-SMD-0101
+Change Component Footprint: Designator=R11 Old Footprint=RES_0402 New Footprint=RES-SMD-0101
+Change component parameters: Designator = "C8" ("C8"); Footprint = "CAP_0603"; UniqueID = "\HWJVNNVP\LOEZSRON" ("\HWJVNNVP\LOEZSRON")
+Change component parameters: Designator = "C9" ("C9"); Footprint = "CAP_0402"; UniqueID = "\HWJVNNVP\HDPIATMO" ("\HWJVNNVP\HDPIATMO")
+Change component parameters: Designator = "C10" ("C10"); Footprint = "CAP_0402"; UniqueID = "\HWJVNNVP\ZUGTUDNK" ("\HWJVNNVP\ZUGTUDNK")
+Change component parameters: Designator = "C11" ("C11"); Footprint = "CAP_0402"; UniqueID = "\HWJVNNVP\DYHKCOMJ" ("\HWJVNNVP\DYHKCOMJ")
+Change component parameters: Designator = "C12" ("C12"); Footprint = "CAP_0402"; UniqueID = "\HWJVNNVP\YPAOEMNG" ("\HWJVNNVP\YPAOEMNG")
+Change component parameters: Designator = "C13" ("C13"); Footprint = "CAP_0402"; UniqueID = "\HWJVNNVP\FNUYCIDJ" ("\HWJVNNVP\FNUYCIDJ")
+Change component parameters: Designator = "C14" ("C14"); Footprint = "CAP_0402"; UniqueID = "\HWJVNNVP\MLCEITJS" ("\HWJVNNVP\MLCEITJS")
+Change component parameters: Designator = "C15" ("C15"); Footprint = "CAP_0402"; UniqueID = "\HWJVNNVP\NJPLNFJQ" ("\HWJVNNVP\NJPLNFJQ")
+Change component parameters: Designator = "C16" ("C16"); Footprint = "CAP_0603"; UniqueID = "\HWJVNNVP\UKOAXQBD" ("\HWJVNNVP\UKOAXQBD")
+Change component parameters: Designator = "C17" ("C17"); Footprint = "CAP_0603"; UniqueID = "\HWJVNNVP\XLMLSTME" ("\HWJVNNVP\XLMLSTME")
+Change component parameters: Designator = "C18" ("C18"); Footprint = "CAP_0603"; UniqueID = "\HWJVNNVP\ZUBFCKTK" ("\HWJVNNVP\ZUBFCKTK")
+Change component parameters: Designator = "C19" ("C19"); Footprint = "CAP_0402"; UniqueID = "\HWJVNNVP\LBKGVPKB" ("\HWJVNNVP\LBKGVPKB")
+Change component parameters: Designator = "C21" ("C21"); Footprint = "CAP_0402"; UniqueID = "\HWJVNNVP\SGZNXNAY" ("\HWJVNNVP\SGZNXNAY")
+Change component parameters: Designator = "C22" ("C22"); Footprint = "CAP_0402"; UniqueID = "\HWJVNNVP\KMCYWTDB" ("\HWJVNNVP\KMCYWTDB")
+Change component parameters: Designator = "C23" ("C23"); Footprint = "CAP_0402"; UniqueID = "\HWJVNNVP\YHKYINBY" ("\HWJVNNVP\YHKYINBY")
+Change component parameters: Designator = "R8" ("R8"); Footprint = "RES_0402"; UniqueID = "\HWJVNNVP\YQRYPINP" ("\HWJVNNVP\YQRYPINP")
+Change component parameters (AddParameter): Name = "Class"; Value = "Passive"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Manufacturer"; Value = "Generic Components"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Published"; Value = "08/06/2000"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Publisher"; Value = "Altium Hobart Technology Centre"; VariantName = "[No Variations]"
+Change component parameters: Designator = "R10" ("R10"); Footprint = "RES_0402"; UniqueID = "\HWJVNNVP\KKCUGWWL" ("\HWJVNNVP\KKCUGWWL")
+Change component parameters (AddParameter): Name = "Class"; Value = "Passive"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Manufacturer"; Value = "Generic Components"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Published"; Value = "08/06/2000"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Publisher"; Value = "Altium Hobart Technology Centre"; VariantName = "[No Variations]"
+Change component parameters: Designator = "R11" ("R11"); Footprint = "RES_0402"; UniqueID = "\HWJVNNVP\JTRRFGIP" ("\HWJVNNVP\JTRRFGIP")
+Change component parameters (AddParameter): Name = "Class"; Value = "Passive"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Manufacturer"; Value = "Generic Components"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Published"; Value = "08/06/2000"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Publisher"; Value = "Altium Hobart Technology Centre"; VariantName = "[No Variations]"
+Added Pin To Net: NetName=3V3 Pin=C8-1
+Added Pin To Net: NetName=GND Pin=C8-2
+Added Pin To Net: NetName=3V3 Pin=C9-1
+Added Pin To Net: NetName=GND Pin=C9-2
+Added Pin To Net: NetName=3V3 Pin=C10-1
+Added Pin To Net: NetName=GND Pin=C10-2
+Added Pin To Net: NetName=3V3 Pin=C11-1
+Added Pin To Net: NetName=GND Pin=C11-2
+Added Pin To Net: NetName=3V3 Pin=C12-1
+Added Pin To Net: NetName=GND Pin=C12-2
+Added Pin To Net: NetName=3V3 Pin=C13-1
+Added Pin To Net: NetName=GND Pin=C13-2
+Added Pin To Net: NetName=3V3 Pin=C14-1
+Added Pin To Net: NetName=GND Pin=C14-2
+Added Pin To Net: NetName=3V3 Pin=C15-1
+Added Pin To Net: NetName=GND Pin=C15-2
+Added Pin To Net: NetName=3V3 Pin=C16-1
+Added Pin To Net: NetName=GND Pin=C16-2
+Added Pin To Net: NetName=GND Pin=C17-2
+Added Pin To Net: NetName=GND Pin=C18-2
+Added Pin To Net: NetName=MCU_NRST Pin=C19-1
+Added Pin To Net: NetName=GND Pin=C19-2
+Added Pin To Net: NetName=MCU_OSC_IN Pin=C21-1
+Added Pin To Net: NetName=GND Pin=C21-2
+Added Pin To Net: NetName=MCU_OSC_OUT Pin=C22-1
+Added Pin To Net: NetName=GND Pin=C22-2
+Added Pin To Net: NetName=MCU_OSC32_IN Pin=C23-1
+Added Pin To Net: NetName=GND Pin=C23-2
+Added Pin To Net: NetName=NetC17_1 Pin=C17-1
+Added Pin To Net: NetName=NetC17_1 Pin=U1-48
+Added Net: Name=NetC17_1
+Added Pin To Net: NetName=NetC18_1 Pin=C18-1
+Added Pin To Net: NetName=NetC18_1 Pin=U1-73
+Added Net: Name=NetC18_1
+Added Member To Class: ClassName=MCU Member=Component C24 9pF
+Added Member To Class: ClassName=MCU Member=Component R8 10K
+Added Member To Class: ClassName=MCU Member=Component R9 10K
+Added Member To Class: ClassName=MCU Member=Component R10 220

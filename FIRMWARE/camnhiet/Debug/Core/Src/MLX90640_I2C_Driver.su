@@ -1,0 +1,5 @@
+../Core/Src/MLX90640_I2C_Driver.c:11:5:MLX90640_I2CGeneralReset	24	static
+../Core/Src/MLX90640_I2C_Driver.c:20:6:send_frame_uart	104	static
+../Core/Src/MLX90640_I2C_Driver.c:65:5:MLX90640_I2CRead	80	dynamic
+../Core/Src/MLX90640_I2C_Driver.c:80:5:MLX90640_I2CWrite	40	static
+../Core/Src/MLX90640_I2C_Driver.c:95:13:MLX90640_I2CFreqSet	16	static

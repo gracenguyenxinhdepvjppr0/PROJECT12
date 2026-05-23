@@ -1,0 +1,22 @@
+[DesignatorManager]
+
+[SheetNumberManager]
+SheetNumberOrder=Display Order
+SheetNumberMethod=Increasing
+DocumentName0=Battery-Indicator.SchDoc
+UniqueIDPath0=\RUJJQAZQ\MZVDRHHX
+SheetNumber0=3
+DocumentName1=Hardware.SchDoc
+UniqueIDPath1=
+SheetNumber1=1
+DocumentName2=MCU.SchDoc
+UniqueIDPath2=\HWJVNNVP
+SheetNumber2=5
+DocumentName3=Power_Source.SchDoc
+UniqueIDPath3=\RUJJQAZQ
+SheetNumber3=2
+DocumentName4=Voltage_Regulator.SchDoc
+UniqueIDPath4=\RUJJQAZQ\ZYVGGBOR
+SheetNumber4=4
+
+

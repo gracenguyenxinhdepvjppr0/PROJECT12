@@ -1,0 +1,13 @@
+Removed Pin From Net: NetName=GND Pin=C24-2
+Removed Pin From Net: NetName=GND Pin=C25-2
+Removed Member From Class: ClassName=MCU Member=C24
+Removed Member From Class: ClassName=MCU Member=C25
+Removed Member From Class: ClassName=MCU Member=X2
+Change Component Designator: OldDesignator=NRST NewDesignator=SW1
+Change Component Designator: OldDesignator=Regulator NewDesignator=Regulator1
+Added Member To Class: ClassName=Regulator Member=Component Regulator1 AMS1117-5.0
+Added Member To Class: ClassName=MCU Member=Component SW1 DTSM-3
+Added Room: Name=Bat_indicator
+Added Room: Name=MCU
+Added Room: Name=POWER
+Added Room: Name=Regulator

@@ -1,0 +1,17 @@
+Removed Pin From Net: NetName=ESP_TX Pin=ESP2-2
+Removed Pin From Net: NetName=ESP_RX Pin=ESP2-3
+Removed Pin From Net: NetName=3V3 Pin=SHT1-1
+Removed Pin From Net: NetName=3V3 Pin=SOUND-2
+Change Component Designator: OldDesignator=HSE NewDesignator=X1
+Change Component Designator: OldDesignator=LAN NewDesignator=C20
+Change Component Designator: OldDesignator=LSE NewDesignator=X2
+Change Component Designator: OldDesignator=OLED NewDesignator=OLED1
+Change Component Designator: OldDesignator=SOUND NewDesignator=JP1
+Added Pin To Net: NetName=ESP_TX Pin=ESP1-9
+Added Pin To Net: NetName=ESP_RX Pin=ESP1-10
+Added Pin To Net: NetName=+3V3 Pin=JP1-2
+Added Pin To Net: NetName=+3V3 Pin=SHT1-1
+Added Room: Name=Bat_indicator
+Added Room: Name=MCU
+Added Room: Name=POWER
+Added Room: Name=Regulator

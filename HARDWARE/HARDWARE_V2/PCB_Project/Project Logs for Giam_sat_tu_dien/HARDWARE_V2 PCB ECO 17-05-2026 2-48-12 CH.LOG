@@ -1,0 +1,17 @@
+Removed Pin From Net: NetName=LSE_IN Pin=Y2-1
+Removed Pin From Net: NetName=LSE_OUT Pin=Y2-2
+Removed Member From Class: ClassName=MCU Member=Y2
+Change Component Designator: OldDesignator=MIC NewDesignator=J2
+Change Component Designator: OldDesignator=MLX90640 NewDesignator=P3
+Change Component Designator: OldDesignator=SCREEN NewDesignator=P5
+Change Component Designator: OldDesignator=SHT30 NewDesignator=P2
+Change Component Designator: OldDesignator=SWD NewDesignator=P1
+Change Component Designator: OldDesignator=W5500 NewDesignator=P4
+Added Component: Designator=X1(XTAL_3215-2)
+Add component (AddParameter): Name = "Distributor Link"; Value = ""; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Manufacturer"; Value = ""; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Manufacturer Part Number"; Value = ""; VariantName = "[No Variations]"
+Added Pin To Net: NetName=LSE_IN Pin=X1-1
+Added Pin To Net: NetName=LSE_OUT Pin=X1-2
+Added Member To Class: ClassName=Sensors Member=Component P2 Header 4
+Added Member To Class: ClassName=MCU Member=Component X1 32.768kHz

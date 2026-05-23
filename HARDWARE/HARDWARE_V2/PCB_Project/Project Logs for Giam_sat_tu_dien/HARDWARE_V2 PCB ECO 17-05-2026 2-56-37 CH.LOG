@@ -1,0 +1,6 @@
+Change Component Designator: OldDesignator=J2 NewDesignator=SPU0410LR5H-QB-7
+Change Component Designator: OldDesignator=P2 NewDesignator=SHT30
+Change Component Designator: OldDesignator=P3 NewDesignator=MLX90640
+Change Component Designator: OldDesignator=P5 NewDesignator=OLED Screen
+Change Component Designator: OldDesignator=S2 NewDesignator=BOOT0
+Change Net Name : Old Net Name=NetC36_2 New Net Name=NetBOOT0_1

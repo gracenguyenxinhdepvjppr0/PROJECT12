@@ -1,0 +1,4 @@
+Added Pin To Net: NetName=+3V3 Pin=U1-6
+Added Member To Class: ClassName=MCU Member=Component C34 10pF
+Added Member To Class: ClassName=MCU Member=Component C35 10pF
+Added Member To Class: ClassName=MCU Member=Component R4 10K

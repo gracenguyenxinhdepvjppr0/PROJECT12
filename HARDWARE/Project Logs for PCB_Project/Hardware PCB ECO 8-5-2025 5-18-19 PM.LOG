@@ -1,0 +1,6 @@
+Added Pin To Net: NetName=NetC5_1 Pin=C5-1
+Added Net: Name=NetC5_1
+Added Pin To Net: NetName=NetC5_2 Pin=C5-2
+Added Net: Name=NetC5_2
+Change Room Name: Old Name=Designator_2 New Name=Designator
+Added Room: Name=Designator

@@ -1,0 +1,8 @@
+Removed Pin From Net: NetName=NetD6_A Pin=STM1-37
+Removed Pin From Net: NetName=NetD7_A Pin=STM1-38
+Added Pin To Net: NetName=NetD6_A Pin=STM1-24
+Added Pin To Net: NetName=NetD7_A Pin=STM1-25
+Added Room: Name=Bat_indicator
+Added Room: Name=MCU
+Added Room: Name=POWER
+Added Room: Name=Regulator

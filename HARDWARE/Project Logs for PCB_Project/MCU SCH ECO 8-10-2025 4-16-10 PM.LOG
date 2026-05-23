@@ -1,0 +1,11 @@
+Change Component Designator: Old Designator=ESP32 P1 New Designator=ESP1
+Change Component Designator: Old Designator=ESP32 P2 New Designator=ESP2
+Change Component Designator: Old Designator=MLX New Designator=MLX1
+Change Component Designator: Old Designator=OLED New Designator=OLED1
+Change Component Designator: Old Designator=R8 New Designator=R7
+Change Component Designator: Old Designator=R9 New Designator=R8
+Change Component Designator: Old Designator=R10 New Designator=R9
+Change Component Designator: Old Designator=R11 New Designator=R10
+Change Component Designator: Old Designator=SHT30 New Designator=SHT1
+Change Component Designator: Old Designator=STM32 New Designator=STM1
+Change Component Designator: Old Designator=SWD New Designator=SWD1

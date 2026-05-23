@@ -1,0 +1,13 @@
+Removed Pin From Net: NetName=GND Pin=C24-2
+Removed Pin From Net: NetName=GND Pin=C25-2
+Removed Member From Class: ClassName=MCU Member=C24
+Removed Member From Class: ClassName=MCU Member=C25
+Removed Member From Class: ClassName=MCU Member=X2
+Change Component Footprint: Designator=C26 Old Footprint=CAP_0402 New Footprint=Cap 0805
+Change Component Footprint: Designator=C27 Old Footprint=CAP_0402 New Footprint=Cap 0805
+Change Component Footprint: Designator=C28 Old Footprint=CAP_0402 New Footprint=Cap 0805
+Change Component Footprint: Designator=C29 Old Footprint=CAP_0402 New Footprint=Cap 0805
+Change component parameters: Designator = "C26" ("C26"); Footprint = "CAP_0402"; UniqueID = "\RUJJQAZQ\ZYVGGBOR\BFZKAZSF" ("\RUJJQAZQ\ZYVGGBOR\BFZKAZSF")
+Change component parameters: Designator = "C27" ("C27"); Footprint = "CAP_0402"; UniqueID = "\RUJJQAZQ\ZYVGGBOR\GZLTNVHS" ("\RUJJQAZQ\ZYVGGBOR\GZLTNVHS")
+Change component parameters: Designator = "C28" ("C28"); Footprint = "CAP_0402"; UniqueID = "\RUJJQAZQ\ZYVGGBOR\MKKMHVQX" ("\RUJJQAZQ\ZYVGGBOR\MKKMHVQX")
+Change component parameters: Designator = "C29" ("C29"); Footprint = "CAP_0402"; UniqueID = "\RUJJQAZQ\ZYVGGBOR\HULSCPYS" ("\RUJJQAZQ\ZYVGGBOR\HULSCPYS")

@@ -1,0 +1,17 @@
+Change Component Footprint: Designator=C26 Old Footprint=CAP_0402 New Footprint=Cap 0805
+Change Component Footprint: Designator=C27 Old Footprint=CAP_0402 New Footprint=Cap 0805
+Change Component Footprint: Designator=C28 Old Footprint=CAP_0402 New Footprint=Cap 0805
+Change Component Footprint: Designator=C29 Old Footprint=CAP_0402 New Footprint=Cap 0805
+Change Component Designator: OldDesignator=MLX90640 NewDesignator=MLX1
+Change Component Designator: OldDesignator=SOUND NewDesignator=JP1
+Change Component Designator: OldDesignator=SWD NewDesignator=SWD1
+Change component parameters: Designator = "C26" ("C26"); Footprint = "CAP_0402"; UniqueID = "\RUJJQAZQ\ZYVGGBOR\BFZKAZSF" ("\RUJJQAZQ\ZYVGGBOR\BFZKAZSF")
+Change component parameters: Designator = "C27" ("C27"); Footprint = "CAP_0402"; UniqueID = "\RUJJQAZQ\ZYVGGBOR\GZLTNVHS" ("\RUJJQAZQ\ZYVGGBOR\GZLTNVHS")
+Change component parameters: Designator = "C28" ("C28"); Footprint = "CAP_0402"; UniqueID = "\RUJJQAZQ\ZYVGGBOR\MKKMHVQX" ("\RUJJQAZQ\ZYVGGBOR\MKKMHVQX")
+Change component parameters: Designator = "C29" ("C29"); Footprint = "CAP_0402"; UniqueID = "\RUJJQAZQ\ZYVGGBOR\HULSCPYS" ("\RUJJQAZQ\ZYVGGBOR\HULSCPYS")
+Added Member To Class: ClassName=MCU Member=Component C18 2.2uF
+Added Member To Class: ClassName=Regulator Member=Component C29 100nF
+Added Room: Name=Bat_indicator
+Added Room: Name=MCU
+Added Room: Name=POWER
+Added Room: Name=Regulator

@@ -1,0 +1,64 @@
+Removed Pin From Net: NetName=E_SCS Pin=C28-2
+Removed Pin From Net: NetName=MISO Pin=C28-4
+Removed Pin From Net: NetName=5V Pin=C28-6
+Removed Pin From Net: NetName=RST Pin=C28-8
+Removed Pin From Net: NetName=INT Pin=C28-9
+Removed Pin From Net: NetName=SHT_SCL Pin=JP2-3
+Removed Pin From Net: NetName=SHT_SDA Pin=JP2-4
+Added Component: Designator=C?(JP5-D2T)
+Add component (AddParameter): Name = "ComponentLink1 Description"; Value = "Manufacturer"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "ComponentLink1URL"; Value = "http://www.we-online.com"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "ComponentLink2 Description"; Value = "Datasheet"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "ComponentLink2URL"; Value = "http://katalog.we-online.de/em/datasheet/6130xx21821.pdf"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Created by"; Value = "Karrer Zheng"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Created Date"; Value = "29 March 2013"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Manufacturer"; Value = "W¨¹rth Elektronik eiSos GmbH"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "NoPins"; Value = "10"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "partNo"; Value = "61301021821"; VariantName = "[No Variations]"
+Added Component: Designator=JP?(JP 1x3 CT)
+Add component (AddParameter): Name = "Chung_Loai"; Value = "C?m"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Don_Vi"; Value = "Con"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Ghi_Chu"; Value = ""; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Kieu_Chan"; Value = ""; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Ma_Hang"; Value = "MH004006"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Ten_Linh_Kien"; Value = "Jump Ðon Cái 2.54MM 1x20P Th?ng"; VariantName = "[No Variations]"
+Added Component: Designator=P?(HDR1X22H)
+Add component (AddParameter): Name = "LatestRevisionDate"; Value = "17-Jul-2002"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "LatestRevisionNote"; Value = "Re-released for DXP Platform."; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Publisher"; Value = "Altium Limited"; VariantName = "[No Variations]"
+Added Component: Designator=P?(HDR1X22H)
+Add component (AddParameter): Name = "LatestRevisionDate"; Value = "17-Jul-2002"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "LatestRevisionNote"; Value = "Re-released for DXP Platform."; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Publisher"; Value = "Altium Limited"; VariantName = "[No Variations]"
+Added Pin To Net: NetName=E_SCLK Pin=C?-1
+Added Pin To Net: NetName=E_SCS Pin=C?-2
+Added Pin To Net: NetName=MOSI Pin=C?-3
+Added Pin To Net: NetName=MISO Pin=C?-4
+Added Pin To Net: NetName=+3V3 Pin=C?-5
+Added Pin To Net: NetName=5V Pin=C?-6
+Added Pin To Net: NetName=GND Pin=C?-7
+Added Pin To Net: NetName=RST Pin=C?-8
+Added Pin To Net: NetName=INT Pin=C?-9
+Added Pin To Net: NetName=GND Pin=C?-10
+Added Pin To Net: NetName=IR_CAM_SCL Pin=JP2-3
+Added Pin To Net: NetName=IR_CAM_SDA Pin=JP2-4
+Added Pin To Net: NetName=GND Pin=JP?-1
+Added Pin To Net: NetName=+3V3 Pin=JP?-2
+Added Pin To Net: NetName=SOUND_OUT Pin=JP?-3
+Added Pin To Net: NetName=MCU_SWO Pin=P1-1
+Added Pin To Net: NetName=+3V3 Pin=P1-2
+Added Pin To Net: NetName=MCU_SWDIO Pin=P1-3
+Added Pin To Net: NetName=MCU_SWCLK Pin=P1-4
+Added Pin To Net: NetName=GND Pin=P1-5
+Added Pin To Net: NetName=+3V3 Pin=P?-1
+Added Pin To Net: NetName=GND Pin=P?-1
+Added Pin To Net: NetName=+3V3 Pin=P?-2
+Added Pin To Net: NetName=ESP_TX Pin=P?-2
+Added Pin To Net: NetName=ESP_RX Pin=P?-3
+Added Pin To Net: NetName=GND Pin=P?-21
+Added Pin To Net: NetName=GND Pin=P?-22
+Added Pin To Net: NetName=GND Pin=P?-22
+Added Pin To Net: NetName=E_SCS Pin=U1-28
+Added Pin To Net: NetName=MISO Pin=U1-30
+Change Room Name: Old Name=Designator_3 New Name=Designator
+Added Room: Name=Designator

@@ -1,0 +1,2 @@
+Change Component Designator: OldDesignator=PWR1 NewDesignator=PWR
+Change Net Name : Old Net Name=NetPWR1_A New Net Name=NetPWR_A

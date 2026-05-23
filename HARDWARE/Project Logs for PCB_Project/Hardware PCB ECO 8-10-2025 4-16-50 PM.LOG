@@ -1,0 +1,33 @@
+Removed Pin From Net: NetName=GND Pin=R5-1
+Removed Pin From Net: NetName=NetD4_2 Pin=R5-2
+Removed Pin From Net: NetName=NetLED5_1 Pin=R6-1
+Removed Pin From Net: NetName=NetQ1_2 Pin=R6-2
+Change Component Footprint: Designator=R5 Old Footprint=RES-1/2W New Footprint=RES-SMD-0101
+Change Component Footprint: Designator=R6 Old Footprint=RES-1/2W New Footprint=RES-SMD-0101
+Change Component Designator: OldDesignator=ESP32 P1 NewDesignator=ESP1
+Change Component Designator: OldDesignator=ESP32 P2 NewDesignator=ESP2
+Change Component Designator: OldDesignator=MLX NewDesignator=MLX1
+Change Component Designator: OldDesignator=OLED NewDesignator=OLED1
+Change Component Designator: OldDesignator=R8 NewDesignator=R7
+Change Component Designator: OldDesignator=R9 NewDesignator=R8
+Change Component Designator: OldDesignator=R10 NewDesignator=R9
+Change Component Designator: OldDesignator=R11 NewDesignator=R10
+Change Component Designator: OldDesignator=Regulator NewDesignator=Regulator1
+Change Component Designator: OldDesignator=SHT30 NewDesignator=SHT1
+Change Component Designator: OldDesignator=STM32 NewDesignator=STM1
+Change Component Designator: OldDesignator=SWD NewDesignator=SWD1
+Change component parameters: Designator = "R5" ("R5"); Footprint = "RES-1/2W"; UniqueID = "\RUJJQAZQ\FJZFSPVD" ("\RUJJQAZQ\FJZFSPVD")
+Change component parameters (AddParameter): Name = "Class"; Value = "Passive"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Manufacturer"; Value = "Generic Components"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Published"; Value = "08/06/2000"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Publisher"; Value = "Altium Hobart Technology Centre"; VariantName = "[No Variations]"
+Change component parameters: Designator = "R6" ("R6"); Footprint = "RES-1/2W"; UniqueID = "\RUJJQAZQ\EUYODXDN" ("\RUJJQAZQ\EUYODXDN")
+Change component parameters (AddParameter): Name = "Class"; Value = "Passive"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Manufacturer"; Value = "Generic Components"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Published"; Value = "08/06/2000"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Publisher"; Value = "Altium Hobart Technology Centre"; VariantName = "[No Variations]"
+Added Pin To Net: NetName=NetD4_2 Pin=R5-1
+Added Pin To Net: NetName=GND Pin=R5-2
+Added Pin To Net: NetName=NetQ1_2 Pin=R6-1
+Added Pin To Net: NetName=NetLED5_1 Pin=R6-2
+Added Room: Name=MCU

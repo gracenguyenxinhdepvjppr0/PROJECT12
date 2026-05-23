@@ -1,0 +1,8 @@
+../Core/Src/ETHERNET/w5500_spi.c:14:9:SPIReadWrite	16	static
+../Core/Src/ETHERNET/w5500_spi.c:23:6:wizchip_select	8	static
+../Core/Src/ETHERNET/w5500_spi.c:28:6:wizchip_deselect	8	static
+../Core/Src/ETHERNET/w5500_spi.c:33:9:wizchip_read	16	static
+../Core/Src/ETHERNET/w5500_spi.c:39:6:wizchip_write	16	static
+../Core/Src/ETHERNET/w5500_spi.c:44:6:wizchip_readburst	24	static
+../Core/Src/ETHERNET/w5500_spi.c:53:6:wizchip_writeburst	24	static
+../Core/Src/ETHERNET/w5500_spi.c:63:6:W5500_Init	40	static
