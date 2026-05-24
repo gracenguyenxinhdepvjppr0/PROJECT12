@@ -1,4 +1,5 @@
-Core/Src/main.o: ../Core/Src/main.c ../Core/Inc/main.h \
+Core/Src/MLX90640_I2C_Driver.o: ../Core/Src/MLX90640_I2C_Driver.c \
+ ../Core/Inc/MLX90640_I2C_Driver.h ../Core/Inc/MLX90640_API.h \
  ../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal.h \
  ../Core/Inc/stm32h7xx_hal_conf.h \
  ../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_rcc.h \
@@ -30,23 +31,9 @@ Core/Src/main.o: ../Core/Src/main.c ../Core/Inc/main.h \
  ../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_spi.h \
  ../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_spi_ex.h \
  ../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_uart.h \
- ../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_uart_ex.h \
- ../Core/Inc/W5500_MQTT.h ../Core/Inc/main.h \
- ../Core/Inc/Ethernet/wizchip_conf.h ../Core/Inc/Ethernet/w5500.h \
- ../Core/Inc/Ethernet/wizchip_conf.h ../Core/Inc/Ethernet/socket.h \
- ../Core/Inc/Ethernet/dhcp.h ../Core/Inc/Ethernet/dns.h \
- C:/Users/Admin/OneDrive/Documents/Giam_sat_tu_dien/FIRMWARE/Ethernet/MQTT/MQTTClient-C/MQTTClient.h \
- C:/Users/Admin/OneDrive/Documents/Giam_sat_tu_dien/FIRMWARE/Ethernet/MQTT/MQTTPacket/MQTTPacket.h \
- C:/Users/Admin/OneDrive/Documents/Giam_sat_tu_dien/FIRMWARE/Ethernet/MQTT/MQTTPacket/MQTTConnect.h \
- C:/Users/Admin/OneDrive/Documents/Giam_sat_tu_dien/FIRMWARE/Ethernet/MQTT/MQTTPacket/MQTTPublish.h \
- C:/Users/Admin/OneDrive/Documents/Giam_sat_tu_dien/FIRMWARE/Ethernet/MQTT/MQTTPacket/MQTTSubscribe.h \
- C:/Users/Admin/OneDrive/Documents/Giam_sat_tu_dien/FIRMWARE/Ethernet/MQTT/MQTTPacket/MQTTUnsubscribe.h \
- C:/Users/Admin/OneDrive/Documents/Giam_sat_tu_dien/FIRMWARE/Ethernet/MQTT/MQTTPacket/MQTTFormat.h \
- C:/Users/Admin/OneDrive/Documents/Giam_sat_tu_dien/FIRMWARE/Ethernet/MQTT/MQTTPacket/StackTrace.h \
- C:/Users/Admin/OneDrive/Documents/Giam_sat_tu_dien/FIRMWARE/Ethernet/MQTT/MQTTPacket/MQTTPacket.h \
- ../Core/Inc/MLX90640_API.h ../Core/Inc/MLX90640_I2C_Driver.h \
- ../Core/Inc/MLX90640_API.h
-../Core/Inc/main.h:
+ ../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_uart_ex.h
+../Core/Inc/MLX90640_I2C_Driver.h:
+../Core/Inc/MLX90640_API.h:
 ../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal.h:
 ../Core/Inc/stm32h7xx_hal_conf.h:
 ../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_rcc.h:
@@ -79,23 +66,3 @@ Core/Src/main.o: ../Core/Src/main.c ../Core/Inc/main.h \
 ../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_spi_ex.h:
 ../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_uart.h:
 ../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_uart_ex.h:
-../Core/Inc/W5500_MQTT.h:
-../Core/Inc/main.h:
-../Core/Inc/Ethernet/wizchip_conf.h:
-../Core/Inc/Ethernet/w5500.h:
-../Core/Inc/Ethernet/wizchip_conf.h:
-../Core/Inc/Ethernet/socket.h:
-../Core/Inc/Ethernet/dhcp.h:
-../Core/Inc/Ethernet/dns.h:
-C:/Users/Admin/OneDrive/Documents/Giam_sat_tu_dien/FIRMWARE/Ethernet/MQTT/MQTTClient-C/MQTTClient.h:
-C:/Users/Admin/OneDrive/Documents/Giam_sat_tu_dien/FIRMWARE/Ethernet/MQTT/MQTTPacket/MQTTPacket.h:
-C:/Users/Admin/OneDrive/Documents/Giam_sat_tu_dien/FIRMWARE/Ethernet/MQTT/MQTTPacket/MQTTConnect.h:
-C:/Users/Admin/OneDrive/Documents/Giam_sat_tu_dien/FIRMWARE/Ethernet/MQTT/MQTTPacket/MQTTPublish.h:
-C:/Users/Admin/OneDrive/Documents/Giam_sat_tu_dien/FIRMWARE/Ethernet/MQTT/MQTTPacket/MQTTSubscribe.h:
-C:/Users/Admin/OneDrive/Documents/Giam_sat_tu_dien/FIRMWARE/Ethernet/MQTT/MQTTPacket/MQTTUnsubscribe.h:
-C:/Users/Admin/OneDrive/Documents/Giam_sat_tu_dien/FIRMWARE/Ethernet/MQTT/MQTTPacket/MQTTFormat.h:
-C:/Users/Admin/OneDrive/Documents/Giam_sat_tu_dien/FIRMWARE/Ethernet/MQTT/MQTTPacket/StackTrace.h:
-C:/Users/Admin/OneDrive/Documents/Giam_sat_tu_dien/FIRMWARE/Ethernet/MQTT/MQTTPacket/MQTTPacket.h:
-../Core/Inc/MLX90640_API.h:
-../Core/Inc/MLX90640_I2C_Driver.h:
-../Core/Inc/MLX90640_API.h:

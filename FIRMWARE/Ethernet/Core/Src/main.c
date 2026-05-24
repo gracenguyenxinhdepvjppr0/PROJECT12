@@ -23,6 +23,9 @@
 /* USER CODE BEGIN Includes */
 #include "W5500_MQTT.h"
 #include "MQTTClient.h"
+#include "MLX90640_API.h"
+#include "MLX90640_I2C_Driver.h"
+#include <stdio.h>
 #include <string.h>
 /* USER CODE END Includes */
 
@@ -33,7 +36,7 @@
 
 /* Private define ------------------------------------------------------------*/
 /* USER CODE BEGIN PD */
-
+#define MLX90640_ADDR 0x33
 /* USER CODE END PD */
 
 /* Private macro -------------------------------------------------------------*/
@@ -43,6 +46,8 @@
 
 /* Private variables ---------------------------------------------------------*/
 
+I2C_HandleTypeDef hi2c1;
+
 SPI_HandleTypeDef hspi1;
 
 UART_HandleTypeDef huart1;
@@ -50,10 +55,19 @@ UART_HandleTypeDef huart1;
 /* USER CODE BEGIN PV */
 Network network;
 MQTTClient client;
-uint8_t sendbuf[512], readbuf[512];
+uint8_t sendbuf[6000], readbuf[512];
 uint8_t mac_addr[] = {0x00, 0x08, 0xdc, 0x11, 0x22, 0x33};
 
 uint8_t broker_ip[4] = {0, 0, 0, 0};
+
+uint16_t eeMLX90640[832];       // Mảng chứa dữ liệu EEPROM
+uint16_t frame[834];            // Mảng chứa dữ liệu thô của 1 khung hình
+float MLX90640To[768];          // Mảng chứa nhiệt độ (độ C) của 32x24 pixels
+paramsMLX90640 mlx90640Params;	// Chứa tham số calib
+char txBuff[6000];
+
+uint8_t is_dns_resolved = 0;
+uint8_t is_mqtt_connected = 0;
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -62,13 +76,92 @@ static void MPU_Config(void);
 static void MX_GPIO_Init(void);
 static void MX_SPI1_Init(void);
 static void MX_USART1_UART_Init(void);
+static void MX_I2C1_Init(void);
 /* USER CODE BEGIN PFP */
-
+void MLX90640_Setup(void);
+void MLX90640_Process_MQTT(void);
 /* USER CODE END PFP */
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
+void MLX90640_Setup(void)
+{
+    int status;
+    char buffer[50];
 
+    MLX90640_SetChessMode(MLX90640_ADDR);
+    // Thiết lập tốc độ làm tươi (Refresh Rate). Ví dụ: 0x03 = 4Hz, 0x04 = 8Hz
+    MLX90640_SetRefreshRate(MLX90640_ADDR, 0x06);
+
+    // Đọc toàn bộ bộ nhớ EEPROM của cảm biến
+    status = MLX90640_DumpEE(MLX90640_ADDR, eeMLX90640);
+    if (status != 0)
+    {
+        sprintf(buffer, "Loi doc EEPROM!\r\n");
+        HAL_UART_Transmit(&huart1, (uint8_t*)buffer, strlen(buffer), 50);
+    }
+
+    // Trích xuất các hệ số hiệu chuẩn vào struct
+    status = MLX90640_ExtractParameters(eeMLX90640, &mlx90640Params);
+    if (status != 0)
+    {
+        sprintf(buffer, "Loi trich xuat tham so!\r\n");
+        HAL_UART_Transmit_DMA(&huart1, (uint8_t*)buffer, strlen(buffer));
+    }
+}
+
+void MLX90640_Process_MQTT(void)
+{
+    int subpage;
+    float ta, tr, vdd;
+    float emissivity = 0.95;
+
+    subpage = MLX90640_GetFrameData(MLX90640_ADDR, frame);
+
+    if (subpage >= 0)
+    {
+    	vdd = MLX90640_GetVdd(frame, &mlx90640Params);
+    	ta = MLX90640_GetTa(frame, &mlx90640Params);
+    	tr = ta - 8.0f;
+        MLX90640_CalculateTo(frame, &mlx90640Params, emissivity, tr, MLX90640To);
+
+        // Chỉ gửi đi khi đã lấy đủ cả 2 subpage (Khung hình hoàn chỉnh)
+        if (subpage == 1 && is_mqtt_connected == 1)
+        {
+        	int offset = 0;
+            // 1. Mở đầu chuỗi JSON
+			offset += sprintf(txBuff + offset, "{heatmap:[");
+
+            // 2. Chèn 768 giá trị vào mảng
+			for (int i = 0; i < 768; i++)
+			{
+                // Dùng %.1f để giữ 1 số thập phân (tiết kiệm dung lượng chuỗi)
+                offset += sprintf(txBuff + offset, "%d", (int)(MLX90640To[i]*10.0f));
+                if (i < 767) {
+                    offset += sprintf(txBuff + offset, ","); // Thêm dấu phẩy giữa các số
+                }
+            }
+
+            // 3. Đóng chuỗi JSON
+			offset += sprintf(txBuff + offset, "]}");
+
+            // 4. Gửi qua MQTT
+            MQTTMessage pub_msg;
+            memset(&pub_msg, 0, sizeof(pub_msg));
+            pub_msg.qos = QOS0;
+            pub_msg.retained = 0;
+            pub_msg.dup = 0;
+            pub_msg.payload = txBuff;
+            pub_msg.payloadlen = offset; // Kích thước chuỗi lúc này rơi vào khoảng 3800 bytes
+
+            if (MQTTPublish(&client, "v1/devices/me/telemetry", &pub_msg) == MQTT_SUCCESS) {
+                HAL_UART_Transmit(&huart1, (uint8_t*)"Gui anh nhiet OK!\r\n", 19, 100);
+            } else {
+                HAL_UART_Transmit(&huart1, (uint8_t*)"Gui anh nhiet FAILED!\r\n", 23, 100);
+            }
+        }
+    }
+}
 /* USER CODE END 0 */
 
 /**
@@ -105,7 +198,10 @@ int main(void)
   MX_GPIO_Init();
   MX_SPI1_Init();
   MX_USART1_UART_Init();
+  MX_I2C1_Init();
   /* USER CODE BEGIN 2 */
+  MLX90640_Setup();
+
   char msg[] = "W5500 SPI Initializing...\r\n";
   HAL_UART_Transmit(&huart1, (uint8_t*)msg, strlen(msg), 100);
 
@@ -124,8 +220,6 @@ int main(void)
   NetworkInit(&network, MQTT_SOCKET);
   MQTTClientInit(&client, &network, 8000, sendbuf, sizeof(sendbuf), readbuf, sizeof(readbuf));
 
-  uint8_t is_dns_resolved = 0;
-  uint8_t is_mqtt_connected = 0;
   char buf[100];
 
   uint32_t last_dhcp_log = 0; // tránh spam log DHCP quá nhanh
@@ -136,147 +230,121 @@ int main(void)
   while (1)
   {
 	  // Duy trì mạng DHCP
-	  if (W5500_DHCP_Run() == 1)
-	  {
-		  // 1. DỊCH TÊN MIỀN
-		  if (is_dns_resolved == 0)
-		  {
-			  char msg_dns1[] = "Converting Blynk domain...\r\n";
-			  HAL_UART_Transmit(&huart1, (uint8_t*)msg_dns1, strlen(msg_dns1), 100);
+	  // Duy trì mạng DHCP
+	        if (W5500_DHCP_Run() == 1)
+	        {
+	            // 1. DỊCH TÊN MIỀN
+	            if (is_dns_resolved == 0)
+	            {
+	                char msg_dns1[] = "Converting ThingsBoard domain...\r\n";
+	                HAL_UART_Transmit(&huart1, (uint8_t*)msg_dns1, strlen(msg_dns1), 100);
 
-			  // CHÚ Ý: Đổi "sgp1" thành mã khu vực của bạn (nếu có)
-			  if (W5500_DNS_Resolve("sgp1.blynk.cloud", broker_ip) == 1)
-			  {
-				  sprintf(buf, "DNS Success! IP: %d.%d.%d.%d\r\n", broker_ip[0], broker_ip[1], broker_ip[2], broker_ip[3]);
-				  HAL_UART_Transmit(&huart1, (uint8_t*)buf, strlen(buf), 100);
-				  is_dns_resolved = 1;
-			  }
-			  else
-			  {
-				  HAL_Delay(2000);
-			  }
-		  }
+	                // CHÚ Ý: Đã đổi sang bản EU Cloud (thingsboard.cloud)
+	                if (W5500_DNS_Resolve("eu.thingsboard.cloud", broker_ip) == 1)
+	                {
+	                    sprintf(buf, "DNS Success! IP: %d.%d.%d.%d\r\n", broker_ip[0], broker_ip[1], broker_ip[2], broker_ip[3]);
+	                    HAL_UART_Transmit(&huart1, (uint8_t*)buf, strlen(buf), 100);
+	                    is_dns_resolved = 1;
+	                }
+	                else
+	                {
+	                    char msg_dns_err[] = "DNS Error, retrying in 2s...\r\n";
+	                    HAL_UART_Transmit(&huart1, (uint8_t*)msg_dns_err, strlen(msg_dns_err), 100);
+	                    HAL_Delay(2000);
+	                }
+	            }
 
-		  // 2. KẾT NỐI TCP & MQTT (Dùng 'if' thay vì 'else if' để chạy ngay lập tức)
-		  if (is_dns_resolved == 1 && is_mqtt_connected == 0)
-		  {
-//			  // --- ÉP CỨNG IP CHỐNG TRÔI BỘ NHỚ 100% ---
-//			  broker_ip[0] = 128;
-//			  broker_ip[1] = 199;
-//			  broker_ip[2] = 144;
-//			  broker_ip[3] = 129;
+	            // 2. KẾT NỐI TCP & MQTT (Dùng 'if' thay cho 'else if' để chạy ngay lập tức)
+	            if (is_dns_resolved == 1 && is_mqtt_connected == 0)
+	            {
+	                // Khởi tạo Port động chống kẹt Socket
+	                static uint16_t local_port = 30000;
+	                local_port++;
+	                if (local_port > 60000) local_port = 30000;
 
-			  // Khởi tạo Port động
-			  static uint16_t local_port = 30000;
-			  local_port++;
-			  if (local_port > 60000) local_port = 30000;
+	                disconnect(MQTT_SOCKET);
+	                close(MQTT_SOCKET);
+	                socket(MQTT_SOCKET, Sn_MR_TCP, local_port, 0);
 
-			  disconnect(MQTT_SOCKET);
-			  close(MQTT_SOCKET);
-			  socket(MQTT_SOCKET, Sn_MR_TCP, local_port, 0);
+	                if (connect(MQTT_SOCKET, broker_ip, 1883) == SOCK_OK)
+	                {
+	                    // Kiểm tra TCP Established
+	                    uint32_t tcp_timeout = HAL_GetTick();
+	                    uint8_t tcp_ok = 0;
+	                    while (HAL_GetTick() - tcp_timeout < 5000) {
+	                        if (getSn_SR(MQTT_SOCKET) == SOCK_ESTABLISHED) {
+	                            tcp_ok = 1;
+	                            break;
+	                        }
+	                        if (getSn_SR(MQTT_SOCKET) == SOCK_CLOSED) break;
+	                        HAL_Delay(10);
+	                    }
 
-			  // In ra IP để chứng minh bộ nhớ sạch sẽ
-			  char msg_ip[60];
-			  sprintf(msg_ip, "Tien hanh TCP ket noi den: %d.%d.%d.%d\r\n", broker_ip[0], broker_ip[1], broker_ip[2], broker_ip[3]);
-			  HAL_UART_Transmit(&huart1, (uint8_t*)msg_ip, strlen(msg_ip), 100);
+	                    if (tcp_ok == 1)
+	                    {
+	                        MQTTPacket_connectData data = MQTTPacket_connectData_initializer;
+	                        data.MQTTVersion = 3;
+	                        data.clientID.cstring = "STM32_EU_Cloud"; // Tên thiết bị
+	                        data.username.cstring = "e1818hk2mp31yijnw1bs"; // ACCESS TOKEN CỦA BẠN
+	                        data.password.cstring = NULL;
 
-			  int8_t conn_stat = connect(MQTT_SOCKET, broker_ip, 1883);
+	                        if (MQTTConnect(&client, &data) == MQTT_SUCCESS)
+	                        {
+	                            is_mqtt_connected = 1;
+	                            char msg_mqtt_ok[] = "Connected to ThingsBoard successfully!\r\n";
+	                            HAL_UART_Transmit(&huart1, (uint8_t*)msg_mqtt_ok, strlen(msg_mqtt_ok), 100);
+	                        }
+	                        else
+	                        {
+	                            char msg_fail[] = "MQTT Connect FAILED!\r\n";
+	                            HAL_UART_Transmit(&huart1, (uint8_t*)msg_fail, strlen(msg_fail), 100);
+	                            close(MQTT_SOCKET);
+	                            is_dns_resolved = 0;
+	                        }
+	                    }
+	                    else
+	                    {
+	                        close(MQTT_SOCKET);
+	                        is_dns_resolved = 0;
+	                    }
+	                }
+	                else
+	                {
+	                    close(MQTT_SOCKET);
+	                    is_dns_resolved = 0;
+	                    HAL_Delay(10);
+	                }
+	            }
 
-			  if (conn_stat == SOCK_OK)
-			  {
-				  char msg_tcp_wait[] = "TCP OK! Cho Blynk (SYN-ACK)...\r\n";
-				  HAL_UART_Transmit(&huart1, (uint8_t*)msg_tcp_wait, strlen(msg_tcp_wait), 100);
+	            // 3. BẮT ĐẦU PUBLISH
+	            if (is_mqtt_connected == 1)
+	            {
+	                if (MQTTYield(&client, 10) != MQTT_SUCCESS)
+	                {
+	                    is_mqtt_connected = 0;
+	                    NetworkDisconnect(&network);
+	                    char msg_drop[] = "MQTT Connection Lost!\r\n";
+	                    HAL_UART_Transmit(&huart1, (uint8_t*)msg_drop, strlen(msg_drop), 100);
+	                    continue;
+	                }
 
-				  uint32_t tcp_timeout = HAL_GetTick();
-				  uint8_t tcp_ok = 0;
-				  while (HAL_GetTick() - tcp_timeout < 5000) {
-					  if (getSn_SR(MQTT_SOCKET) == SOCK_ESTABLISHED) {
-						  tcp_ok = 1;
-						  break;
-					  }
-					  if (getSn_SR(MQTT_SOCKET) == SOCK_CLOSED) break;
-					  HAL_Delay(10);
-				  }
-
-				  if (tcp_ok == 1) {
-					  MQTTPacket_connectData data = MQTTPacket_connectData_initializer;
-					  data.MQTTVersion = 4;
-					  data.clientID.cstring = "STM32_Blynk";
-					  data.username.cstring = "_xMXnUoia5uqwbxGkvYeN2Kj6XyT57-m"; // DÁN TOKEN VÀO ĐÂY
-					  data.password.cstring = NULL;
-					  data.keepAliveInterval = 60;
-
-					  if (MQTTConnect(&client, &data) == MQTT_SUCCESS) {
-						  is_mqtt_connected = 1;
-						  char msg_ok[] = "Connected to Blynk successfully!\r\n";
-						  HAL_UART_Transmit(&huart1, (uint8_t*)msg_ok, strlen(msg_ok), 100);
-					  } else {
-						  char msg_fail[] = "MQTT Connect FAILED!\r\n";
-						  HAL_UART_Transmit(&huart1, (uint8_t*)msg_fail, strlen(msg_fail), 100);
-						  close(MQTT_SOCKET);
-						  is_dns_resolved = 0; // Xin lại mạng nếu xịt
-					  }
-				  } else {
-					  char msg_tcp_fail[] = "TCP Time out!\r\n";
-					  HAL_UART_Transmit(&huart1, (uint8_t*)msg_tcp_fail, strlen(msg_tcp_fail), 100);
-					  close(MQTT_SOCKET);
-					  is_dns_resolved = 0;
-				  }
-			  }
-			  else
-			  {
-				  char msg_sock_err[50];
-				  sprintf(msg_sock_err, "Loi ham connect()! Ma loi: %d\r\n", conn_stat);
-				  HAL_UART_Transmit(&huart1, (uint8_t*)msg_sock_err, strlen(msg_sock_err), 100);
-				  close(MQTT_SOCKET);
-				  is_dns_resolved = 0;
-				  HAL_Delay(2000);
-			  }
-		  }
-
-		  // 3. BẮT ĐẦU PUBLISH (Dùng 'if')
-		  if (is_mqtt_connected == 1)
-		  {
-			  if (MQTTYield(&client, 100) != MQTT_SUCCESS) {
-				  is_mqtt_connected = 0;
-				  NetworkDisconnect(&network);
-				  char msg_drop[] = "MQTT Connection Lost!\r\n";
-				  HAL_UART_Transmit(&huart1, (uint8_t*)msg_drop, strlen(msg_drop), 100);
-				  continue;
-			  }
-
-			  MQTTMessage pub_msg;
-			  memset(&pub_msg, 0, sizeof(pub_msg));
-
-			  // Dữ liệu mộc, không dùng JSON
-			  char payload[10];
-			  sprintf(payload, "%d", 25);
-
-			  pub_msg.qos = QOS0;
-			  pub_msg.retained = 0;
-			  pub_msg.dup = 0;
-			  pub_msg.payload = payload;
-			  pub_msg.payloadlen = strlen(payload);
-
-			  // Bắn thẳng lên chân Virtual V0
-			  if (MQTTPublish(&client, "ds/V0", &pub_msg) == MQTT_SUCCESS) {
-				  char msg_pub[] = "Publish to Blynk OK!\r\n";
-				  HAL_UART_Transmit(&huart1, (uint8_t*)msg_pub, strlen(msg_pub), 100);
-			  } else {
-				  char msg_pub_err[] = "Publish FAILED!\r\n";
-				  HAL_UART_Transmit(&huart1, (uint8_t*)msg_pub_err, strlen(msg_pub_err), 100);
-			  }
-
-			  HAL_Delay(2000);
-		  }
-	  }
-	  else
-	  {
-		  // Đang xin DHCP hoặc rớt mạng
-		  is_dns_resolved = 0;
-		  is_mqtt_connected = 0;
-	  }
-    /*	 USER CODE END WHILE */
+	                // --- DỌN RÁC BỘ NHỚ VÀ ĐÓNG GÓI JSON ---
+	                MLX90640_Process_MQTT();
+	                HAL_Delay(200);
+	            }
+	        }
+	        else
+	        {
+	            // Đang xin DHCP hoặc rớt mạng (Bây giờ nó đã nằm đúng vị trí!)
+	            is_dns_resolved = 0;
+	            is_mqtt_connected = 0;
+	            // Báo "nhịp tim" mỗi 1 giây để chống mù thông tin
+	            if (HAL_GetTick() - last_dhcp_log > 1000) {
+	            	HAL_UART_Transmit(&huart1, (uint8_t*)"Dang xin IP tu Router...\r\n", 26, 100);
+	            	last_dhcp_log = HAL_GetTick();
+	            }
+	        }
+    /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
   }
@@ -343,6 +411,58 @@ void SystemClock_Config(void)
 }
 
 /**
+  * @brief I2C1 Initialization Function
+  * @param None
+  * @retval None
+  */
+static void MX_I2C1_Init(void)
+{
+
+  /* USER CODE BEGIN I2C1_Init 0 */
+
+  /* USER CODE END I2C1_Init 0 */
+
+  /* USER CODE BEGIN I2C1_Init 1 */
+
+  /* USER CODE END I2C1_Init 1 */
+  hi2c1.Instance = I2C1;
+  hi2c1.Init.Timing = 0x00601A5C;
+  hi2c1.Init.OwnAddress1 = 0;
+  hi2c1.Init.AddressingMode = I2C_ADDRESSINGMODE_7BIT;
+  hi2c1.Init.DualAddressMode = I2C_DUALADDRESS_DISABLE;
+  hi2c1.Init.OwnAddress2 = 0;
+  hi2c1.Init.OwnAddress2Masks = I2C_OA2_NOMASK;
+  hi2c1.Init.GeneralCallMode = I2C_GENERALCALL_DISABLE;
+  hi2c1.Init.NoStretchMode = I2C_NOSTRETCH_DISABLE;
+  if (HAL_I2C_Init(&hi2c1) != HAL_OK)
+  {
+    Error_Handler();
+  }
+
+  /** Configure Analogue filter
+  */
+  if (HAL_I2CEx_ConfigAnalogFilter(&hi2c1, I2C_ANALOGFILTER_ENABLE) != HAL_OK)
+  {
+    Error_Handler();
+  }
+
+  /** Configure Digital filter
+  */
+  if (HAL_I2CEx_ConfigDigitalFilter(&hi2c1, 0) != HAL_OK)
+  {
+    Error_Handler();
+  }
+
+  /** I2C Enable Fast Mode Plus
+  */
+  HAL_I2CEx_EnableFastModePlus(I2C_FASTMODEPLUS_I2C1);
+  /* USER CODE BEGIN I2C1_Init 2 */
+
+  /* USER CODE END I2C1_Init 2 */
+
+}
+
+/**
   * @brief SPI1 Initialization Function
   * @param None
   * @retval None
@@ -365,7 +485,7 @@ static void MX_SPI1_Init(void)
   hspi1.Init.CLKPolarity = SPI_POLARITY_LOW;
   hspi1.Init.CLKPhase = SPI_PHASE_1EDGE;
   hspi1.Init.NSS = SPI_NSS_SOFT;
-  hspi1.Init.BaudRatePrescaler = SPI_BAUDRATEPRESCALER_32;
+  hspi1.Init.BaudRatePrescaler = SPI_BAUDRATEPRESCALER_16;
   hspi1.Init.FirstBit = SPI_FIRSTBIT_MSB;
   hspi1.Init.TIMode = SPI_TIMODE_DISABLE;
   hspi1.Init.CRCCalculation = SPI_CRCCALCULATION_DISABLE;

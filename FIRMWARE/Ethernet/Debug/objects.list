@@ -3,6 +3,8 @@
 "./Core/Src/Ethernet/socket.o"
 "./Core/Src/Ethernet/w5500.o"
 "./Core/Src/Ethernet/wizchip_conf.o"
+"./Core/Src/MLX90640_API.o"
+"./Core/Src/MLX90640_I2C_Driver.o"
 "./Core/Src/W5500_MQTT.o"
 "./Core/Src/main.o"
 "./Core/Src/stm32h7xx_hal_msp.o"

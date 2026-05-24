@@ -135,7 +135,7 @@ GenerateClassCluster=0
 DocumentUniqueId=PRGLPRRY
 
 [Document6]
-DocumentPath=..\..\..\..\..\..\..\Public\Documents\Altium\AD24\Library\Screen.SchDoc
+DocumentPath=..\..\..\..\..\..\..\Public\Documents\Altium\AD24\Library\Display.SchDoc
 AnnotationEnabled=1
 AnnotateStartValue=1
 AnnotationIndexControlEnabled=0
