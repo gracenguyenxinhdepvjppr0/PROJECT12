@@ -129,6 +129,9 @@ void MLX90640_Process_MQTT(void)
         if (subpage == 1 && is_mqtt_connected == 1)
         {
         	int offset = 0;
+
+        	// XÓA SẠCH BỘ ĐỆM CŨ TRƯỚC KHI GHI CHUỖI MỚI (CHỐNG TRÀN BỘ NHỚ)
+        	memset(txBuff, 0, sizeof(txBuff));
             // 1. Mở đầu chuỗi JSON
 			offset += sprintf(txBuff + offset, "{heatmap:[");
 

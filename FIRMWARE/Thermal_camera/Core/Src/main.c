@@ -55,6 +55,7 @@ uint16_t frame[834];            // Mảng chứa dữ liệu thô của 1 khung 
 float MLX90640To[768];          // Mảng chứa nhiệt độ (độ C) của 32x24 pixels
 paramsMLX90640 mlx90640Params;	// Chứa tham số calib
 char txBuff[6000];
+uint8_t sendbuf[6000], readbuf[512];
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
