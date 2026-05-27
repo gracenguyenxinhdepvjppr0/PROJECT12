@@ -1,0 +1,16 @@
+Removed Pin From Net: NetName=+3V3 Pin=W5500-2
+Removed Pin From Net: NetName=GND Pin=W5500-3
+Removed Pin From Net: NetName=SPI1_MISO Pin=W5500-4
+Removed Pin From Net: NetName=+3V3 Pin=W5500-5
+Removed Pin From Net: NetName=SPI1_MOSI Pin=W5500-6
+Removed Pin From Net: NetName=SPI1_CS Pin=W5500-8
+Removed Pin From Net: NetName=GND Pin=W5500-9
+Removed Pin From Net: NetName=SPI1_SCLK Pin=W5500-10
+Added Pin To Net: NetName=+3V3 Pin=W5500-1
+Added Pin To Net: NetName=SPI1_MISO Pin=W5500-3
+Added Pin To Net: NetName=GND Pin=W5500-4
+Added Pin To Net: NetName=SPI1_MOSI Pin=W5500-5
+Added Pin To Net: NetName=+3V3 Pin=W5500-6
+Added Pin To Net: NetName=SPI1_CS Pin=W5500-7
+Added Pin To Net: NetName=SPI1_SCLK Pin=W5500-9
+Added Pin To Net: NetName=GND Pin=W5500-10
