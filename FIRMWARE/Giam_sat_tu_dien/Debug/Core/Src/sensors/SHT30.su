@@ -1,0 +1,2 @@
+../Core/Src/sensors/SHT30.c:9:19:SHT30_Read	32	static
+../Core/Src/sensors/SHT30.c:28:9:SHT30_CRC	32	static

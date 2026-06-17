@@ -106,7 +106,7 @@ void MLX90640_Setup(void)
     if (status != 0)
     {
         sprintf(buffer, "Loi trich xuat tham so!\r\n");
-        HAL_UART_Transmit_DMA(&huart1, (uint8_t*)buffer, strlen(buffer));
+        HAL_UART_Transmit(&huart1, (uint8_t*)buffer, strlen(buffer), 50);
     }
 }
 
