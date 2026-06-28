@@ -29,4 +29,6 @@ Core/Src/sensors/MLX90640 \
 Core/Src/sensors \
 Core/Startup \
 Drivers/STM32H7xx_HAL_Driver/Src \
+MQTT/MQTTClient-C \
+MQTT/MQTTPacket \
 

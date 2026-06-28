@@ -55,7 +55,7 @@ SDA        |PB7          |Serial data line
 
 /* I2C address */
 #ifndef SH1106_I2C_ADDR
-#define SH1106_I2C_ADDR         0x3C<<1
+#define SH1106_I2C_ADDR         0x78
 #endif
 
 /* SH1106 settings */
@@ -67,7 +67,7 @@ SDA        |PB7          |Serial data line
 #ifndef SH1106_HEIGHT
 #define SH1106_HEIGHT           64
 #endif
-
+/*SH1106 I2C HANDLE*/
 extern I2C_HandleTypeDef hi2c2;
 #define SH1106_I2C_HANDLE &hi2c2
 /**

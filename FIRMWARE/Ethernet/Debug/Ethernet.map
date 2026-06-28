@@ -8790,7 +8790,7 @@ LOAD C:/ST/STM32CubeIDE_2.0.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.exte
  .debug_macro   0x00035bc8      0x192 ./MQTT/MQTTPacket/MQTTPacket.o
  .debug_macro   0x00035d5a      0x18c ./MQTT/MQTTPacket/MQTTSerializePublish.o
 
-.debug_line     0x00000000    0x203b0
+.debug_line     0x00000000    0x203ae
  .debug_line    0x00000000     0x1317 ./Core/Src/Ethernet/dhcp.o
  .debug_line    0x00001317      0xa3d ./Core/Src/Ethernet/dns.o
  .debug_line    0x00001d54      0xf81 ./Core/Src/Ethernet/socket.o
@@ -8799,29 +8799,29 @@ LOAD C:/ST/STM32CubeIDE_2.0.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.exte
  .debug_line    0x0000419a     0x1cd3 ./Core/Src/MLX90640_API.o
  .debug_line    0x00005e6d      0x9bb ./Core/Src/MLX90640_I2C_Driver.o
  .debug_line    0x00006828      0xc99 ./Core/Src/W5500_MQTT.o
- .debug_line    0x000074c1      0xfab ./Core/Src/main.o
- .debug_line    0x0000846c      0xa0a ./Core/Src/stm32h7xx_hal_msp.o
- .debug_line    0x00008e76      0x9c6 ./Core/Src/stm32h7xx_it.o
- .debug_line    0x0000983c      0x8b1 ./Core/Src/syscalls.o
- .debug_line    0x0000a0ed      0x58d ./Core/Src/sysmem.o
- .debug_line    0x0000a67a      0xad3 ./Core/Src/system_stm32h7xx.o
- .debug_line    0x0000b14d       0x7b ./Core/Startup/startup_stm32h723zgtx.o
- .debug_line    0x0000b1c8      0xf48 ./Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal.o
- .debug_line    0x0000c110      0xea1 ./Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_cortex.o
- .debug_line    0x0000cfb1      0xd2c ./Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_gpio.o
- .debug_line    0x0000dcdd     0x3c2e ./Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_i2c.o
- .debug_line    0x0001190b      0xa45 ./Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_i2c_ex.o
- .debug_line    0x00012350      0xf86 ./Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_pwr_ex.o
- .debug_line    0x000132d6     0x14c5 ./Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_rcc.o
- .debug_line    0x0001479b     0x1d79 ./Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_rcc_ex.o
- .debug_line    0x00016514     0x2249 ./Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_spi.o
- .debug_line    0x0001875d     0x39ab ./Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_uart.o
- .debug_line    0x0001c108      0xe4d ./Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_uart_ex.o
- .debug_line    0x0001cf55     0x1385 ./MQTT/MQTTClient-C/MQTTClient.o
- .debug_line    0x0001e2da      0x85c ./MQTT/MQTTPacket/MQTTConnectClient.o
- .debug_line    0x0001eb36      0x6e1 ./MQTT/MQTTPacket/MQTTDeserializePublish.o
- .debug_line    0x0001f217      0xa7e ./MQTT/MQTTPacket/MQTTPacket.o
- .debug_line    0x0001fc95      0x71b ./MQTT/MQTTPacket/MQTTSerializePublish.o
+ .debug_line    0x000074c1      0xfa9 ./Core/Src/main.o
+ .debug_line    0x0000846a      0xa0a ./Core/Src/stm32h7xx_hal_msp.o
+ .debug_line    0x00008e74      0x9c6 ./Core/Src/stm32h7xx_it.o
+ .debug_line    0x0000983a      0x8b1 ./Core/Src/syscalls.o
+ .debug_line    0x0000a0eb      0x58d ./Core/Src/sysmem.o
+ .debug_line    0x0000a678      0xad3 ./Core/Src/system_stm32h7xx.o
+ .debug_line    0x0000b14b       0x7b ./Core/Startup/startup_stm32h723zgtx.o
+ .debug_line    0x0000b1c6      0xf48 ./Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal.o
+ .debug_line    0x0000c10e      0xea1 ./Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_cortex.o
+ .debug_line    0x0000cfaf      0xd2c ./Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_gpio.o
+ .debug_line    0x0000dcdb     0x3c2e ./Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_i2c.o
+ .debug_line    0x00011909      0xa45 ./Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_i2c_ex.o
+ .debug_line    0x0001234e      0xf86 ./Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_pwr_ex.o
+ .debug_line    0x000132d4     0x14c5 ./Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_rcc.o
+ .debug_line    0x00014799     0x1d79 ./Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_rcc_ex.o
+ .debug_line    0x00016512     0x2249 ./Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_spi.o
+ .debug_line    0x0001875b     0x39ab ./Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_uart.o
+ .debug_line    0x0001c106      0xe4d ./Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_uart_ex.o
+ .debug_line    0x0001cf53     0x1385 ./MQTT/MQTTClient-C/MQTTClient.o
+ .debug_line    0x0001e2d8      0x85c ./MQTT/MQTTPacket/MQTTConnectClient.o
+ .debug_line    0x0001eb34      0x6e1 ./MQTT/MQTTPacket/MQTTDeserializePublish.o
+ .debug_line    0x0001f215      0xa7e ./MQTT/MQTTPacket/MQTTPacket.o
+ .debug_line    0x0001fc93      0x71b ./MQTT/MQTTPacket/MQTTSerializePublish.o
 
 .debug_str      0x00000000   0x14ecaa
  .debug_str     0x00000000   0x14ecaa ./Core/Src/Ethernet/dhcp.o

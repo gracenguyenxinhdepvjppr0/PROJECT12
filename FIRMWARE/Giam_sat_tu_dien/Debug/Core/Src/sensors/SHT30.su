@@ -1,2 +1,4 @@
-../Core/Src/sensors/SHT30.c:9:19:SHT30_Read	32	static
-../Core/Src/sensors/SHT30.c:28:9:SHT30_CRC	32	static
+../Core/Src/sensors/SHT30.c:15:19:SHT30_Read	32	static
+../Core/Src/sensors/SHT30.c:41:9:SHT30_CRC	32	static
+../Core/Src/sensors/SHT30.c:59:9:SHT30_CheckCRC	24	static
+../Core/Src/sensors/SHT30.c:67:7:SHT30_CalcDewPoint	32	static

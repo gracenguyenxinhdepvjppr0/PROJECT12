@@ -36,7 +36,7 @@
 
 #include "MQTTPacket.h"
 
-#include "W5500_MQTT.h"
+#include "Ethernet/W5500_MQTT.h"
 
 #if defined(MQTTCLIENT_PLATFORM_HEADER)
 /* The following sequence of macros converts the MQTTCLIENT_PLATFORM_HEADER value

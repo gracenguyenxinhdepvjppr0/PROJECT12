@@ -9,6 +9,8 @@ RM := rm -rf
 
 # All of the sources participating in the build are defined here
 -include sources.mk
+-include MQTT/MQTTPacket/subdir.mk
+-include MQTT/MQTTClient-C/subdir.mk
 -include Drivers/STM32H7xx_HAL_Driver/Src/subdir.mk
 -include Core/Startup/subdir.mk
 -include Core/Src/sensors/MLX90640/subdir.mk
@@ -65,7 +67,7 @@ main-build: Giam_sat_tu_dien.elf secondary-outputs
 
 # Tool invocations
 Giam_sat_tu_dien.elf Giam_sat_tu_dien.map: $(OBJS) $(USER_OBJS) C:\Users\Admin\OneDrive\Documents\Giam_sat_tu_dien\FIRMWARE\Giam_sat_tu_dien\STM32H743VITX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
-	arm-none-eabi-gcc -o "Giam_sat_tu_dien.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m7 -T"C:\Users\Admin\OneDrive\Documents\Giam_sat_tu_dien\FIRMWARE\Giam_sat_tu_dien\STM32H743VITX_FLASH.ld" --specs=nosys.specs -Wl,-Map="Giam_sat_tu_dien.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv5-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+	arm-none-eabi-gcc -o "Giam_sat_tu_dien.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m7 -T"C:\Users\Admin\OneDrive\Documents\Giam_sat_tu_dien\FIRMWARE\Giam_sat_tu_dien\STM32H743VITX_FLASH.ld" --specs=nosys.specs -Wl,-Map="Giam_sat_tu_dien.map" -Wl,--gc-sections -static -L"C:\Users\Admin\OneDrive\Documents\Giam_sat_tu_dien\FIRMWARE\Giam_sat_tu_dien\Drivers\DSP\LIB" --specs=nano.specs -mfpu=fpv5-d16 -mfloat-abi=hard -mthumb -u _printf_float -u _scanf_float -Wl,--start-group -lc -lm -Wl,--end-group
 	@echo 'Finished building target: $@'
 	@echo ' '
 

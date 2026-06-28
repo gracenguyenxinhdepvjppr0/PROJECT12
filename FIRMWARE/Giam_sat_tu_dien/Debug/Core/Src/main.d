@@ -33,7 +33,26 @@ Core/Src/main.o: ../Core/Src/main.c ../Core/Inc/main.h \
  ../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_spi.h \
  ../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_spi_ex.h \
  ../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_uart.h \
- ../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_uart_ex.h
+ ../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_uart_ex.h \
+ ../Core/Inc/sensors/SHT30.h ../Core/Inc/sensors/MLX90640/MLX90640_API.h \
+ ../Core/Inc/sensors/MLX90640/MLX90640_I2C_Driver.h \
+ ../Core/Inc/sensors/MLX90640/MLX90640_API.h ../Core/Inc/OLED/fonts.h \
+ ../Core/Inc/OLED/SH1106.h ../Core/Inc/OLED/fonts.h \
+ ../Core/Inc/Ethernet/W5500_MQTT.h ../Core/Inc/Ethernet/wizchip_conf.h \
+ ../Core/Inc/Ethernet/w5500.h ../Core/Inc/Ethernet/wizchip_conf.h \
+ ../Core/Inc/Ethernet/socket.h ../Core/Inc/Ethernet/dhcp.h \
+ ../Core/Inc/Ethernet/dns.h \
+ C:/Users/Admin/OneDrive/Documents/Giam_sat_tu_dien/FIRMWARE/Giam_sat_tu_dien/MQTT/MQTTClient-C/MQTTClient.h \
+ C:/Users/Admin/OneDrive/Documents/Giam_sat_tu_dien/FIRMWARE/Giam_sat_tu_dien/MQTT/MQTTPacket/MQTTPacket.h \
+ C:/Users/Admin/OneDrive/Documents/Giam_sat_tu_dien/FIRMWARE/Giam_sat_tu_dien/MQTT/MQTTPacket/MQTTConnect.h \
+ C:/Users/Admin/OneDrive/Documents/Giam_sat_tu_dien/FIRMWARE/Giam_sat_tu_dien/MQTT/MQTTPacket/MQTTPublish.h \
+ C:/Users/Admin/OneDrive/Documents/Giam_sat_tu_dien/FIRMWARE/Giam_sat_tu_dien/MQTT/MQTTPacket/MQTTSubscribe.h \
+ C:/Users/Admin/OneDrive/Documents/Giam_sat_tu_dien/FIRMWARE/Giam_sat_tu_dien/MQTT/MQTTPacket/MQTTUnsubscribe.h \
+ C:/Users/Admin/OneDrive/Documents/Giam_sat_tu_dien/FIRMWARE/Giam_sat_tu_dien/MQTT/MQTTPacket/MQTTFormat.h \
+ C:/Users/Admin/OneDrive/Documents/Giam_sat_tu_dien/FIRMWARE/Giam_sat_tu_dien/MQTT/MQTTPacket/StackTrace.h \
+ C:/Users/Admin/OneDrive/Documents/Giam_sat_tu_dien/FIRMWARE/Giam_sat_tu_dien/MQTT/MQTTPacket/MQTTPacket.h \
+ C:/Users/Admin/OneDrive/Documents/Giam_sat_tu_dien/FIRMWARE/Giam_sat_tu_dien/Drivers/DSP/Include/arm_math.h \
+ ../Drivers/CMSIS/Include/cmsis_compiler.h
 ../Core/Inc/main.h:
 ../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal.h:
 ../Core/Inc/stm32h7xx_hal_conf.h:
@@ -70,3 +89,28 @@ Core/Src/main.o: ../Core/Src/main.c ../Core/Inc/main.h \
 ../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_spi_ex.h:
 ../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_uart.h:
 ../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_uart_ex.h:
+../Core/Inc/sensors/SHT30.h:
+../Core/Inc/sensors/MLX90640/MLX90640_API.h:
+../Core/Inc/sensors/MLX90640/MLX90640_I2C_Driver.h:
+../Core/Inc/sensors/MLX90640/MLX90640_API.h:
+../Core/Inc/OLED/fonts.h:
+../Core/Inc/OLED/SH1106.h:
+../Core/Inc/OLED/fonts.h:
+../Core/Inc/Ethernet/W5500_MQTT.h:
+../Core/Inc/Ethernet/wizchip_conf.h:
+../Core/Inc/Ethernet/w5500.h:
+../Core/Inc/Ethernet/wizchip_conf.h:
+../Core/Inc/Ethernet/socket.h:
+../Core/Inc/Ethernet/dhcp.h:
+../Core/Inc/Ethernet/dns.h:
+C:/Users/Admin/OneDrive/Documents/Giam_sat_tu_dien/FIRMWARE/Giam_sat_tu_dien/MQTT/MQTTClient-C/MQTTClient.h:
+C:/Users/Admin/OneDrive/Documents/Giam_sat_tu_dien/FIRMWARE/Giam_sat_tu_dien/MQTT/MQTTPacket/MQTTPacket.h:
+C:/Users/Admin/OneDrive/Documents/Giam_sat_tu_dien/FIRMWARE/Giam_sat_tu_dien/MQTT/MQTTPacket/MQTTConnect.h:
+C:/Users/Admin/OneDrive/Documents/Giam_sat_tu_dien/FIRMWARE/Giam_sat_tu_dien/MQTT/MQTTPacket/MQTTPublish.h:
+C:/Users/Admin/OneDrive/Documents/Giam_sat_tu_dien/FIRMWARE/Giam_sat_tu_dien/MQTT/MQTTPacket/MQTTSubscribe.h:
+C:/Users/Admin/OneDrive/Documents/Giam_sat_tu_dien/FIRMWARE/Giam_sat_tu_dien/MQTT/MQTTPacket/MQTTUnsubscribe.h:
+C:/Users/Admin/OneDrive/Documents/Giam_sat_tu_dien/FIRMWARE/Giam_sat_tu_dien/MQTT/MQTTPacket/MQTTFormat.h:
+C:/Users/Admin/OneDrive/Documents/Giam_sat_tu_dien/FIRMWARE/Giam_sat_tu_dien/MQTT/MQTTPacket/StackTrace.h:
+C:/Users/Admin/OneDrive/Documents/Giam_sat_tu_dien/FIRMWARE/Giam_sat_tu_dien/MQTT/MQTTPacket/MQTTPacket.h:
+C:/Users/Admin/OneDrive/Documents/Giam_sat_tu_dien/FIRMWARE/Giam_sat_tu_dien/Drivers/DSP/Include/arm_math.h:
+../Drivers/CMSIS/Include/cmsis_compiler.h:

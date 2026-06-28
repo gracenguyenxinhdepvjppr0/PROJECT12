@@ -31,26 +31,29 @@ int MLX90640_I2CGeneralReset(void)
 
 int MLX90640_I2CRead(uint8_t slaveAddr, uint16_t startAddress, uint16_t nMemAddressRead, uint16_t *data)
 {
-    // Cấp phát buffer để chứa dữ liệu thô (mỗi thanh ghi 16-bit = 2 bytes)
-    // Lưu ý: Nếu dùng RTOS có stack nhỏ, hãy cân nhắc dùng 'static uint8_t buffer[1664]'
-    // hoặc cấp phát động (malloc) vì nMemAddressRead có thể lên tới 832 words (1664 bytes).
-    static uint8_t buffer[1664];
+	uint16_t chunkSize = 128; // Tốc độ cao: Đọc 128 words (256 bytes) mỗi nhịp
+	uint16_t wordsRead = 0;
+	static uint8_t buffer[1664]; // Mảng tĩnh để hứng toàn bộ dữ liệu (tránh tràn RAM)
 
-    // Đọc liên tiếp các byte từ I2C
-    // Chú ý: slaveAddr phải dịch trái 1 bit cho thư viện HAL
-    if (HAL_I2C_Mem_Read(MLX90640_I2C_HANDLE, (slaveAddr << 1), startAddress, I2C_MEMADD_SIZE_16BIT, buffer, nMemAddressRead * 2, HAL_MAX_DELAY) != HAL_OK)
-    {
-        return -1;
-    }
+	while (wordsRead < nMemAddressRead)
+	{
+		uint16_t wordsToRead = (nMemAddressRead - wordsRead) > chunkSize ? chunkSize : (nMemAddressRead - wordsRead);
 
-    // Ghép 2 bytes thành 1 word 16-bit (Chuyển đổi Big-Endian từ MLX sang Little-Endian của STM32)
-    for (uint16_t cnt = 0; cnt < nMemAddressRead; cnt++)
-    {
-        uint16_t i = cnt << 1; // i = cnt * 2
-        data[cnt] = ((uint16_t)buffer[i] << 8) | buffer[i + 1];
-    }
+		if (HAL_I2C_Mem_Read(MLX90640_I2C_HANDLE, (slaveAddr << 1), startAddress + wordsRead, I2C_MEMADD_SIZE_16BIT, &buffer[wordsRead * 2], wordsToRead * 2, 100) != HAL_OK)
+		{
+			return -1;
+		}
+		wordsRead += wordsToRead;
+	}
 
-    return 0;
+	// Đảo Byte cho toàn bộ mảng một lần duy nhất sau khi đọc xong
+	for (uint16_t cnt = 0; cnt < nMemAddressRead; cnt++)
+	{
+		uint16_t i = cnt << 1;
+		data[cnt] = ((uint16_t)buffer[i] << 8) | buffer[i + 1];
+	}
+
+	return 0;
 }
 
 int MLX90640_I2CWrite(uint8_t slaveAddr, uint16_t writeAddress, uint16_t data)
@@ -72,7 +75,6 @@ int MLX90640_I2CWrite(uint8_t slaveAddr, uint16_t writeAddress, uint16_t data)
 
 void MLX90640_I2CFreqSet(int freq)
 {
-    //Tần số I2C đã được fix cứng khi config trên CubeMX
-    //nên ko thay đổi đc 
+    //Tần số I2C đã được fix cứng khi config trên CubeMX nên ko thay đổi đc
 }
 

@@ -15,9 +15,9 @@
 ../Core/Src/OLED/SH1106.c:428:6:SH1106_DrawCircle	3
 ../Core/Src/OLED/SH1106.c:462:6:SH1106_DrawFilledCircle	3
 ../Core/Src/OLED/SH1106.c:495:6:SH1106_Clear	1
-../Core/Src/OLED/SH1106.c:500:6:SH1106_ON	1
-../Core/Src/OLED/SH1106.c:505:6:SH1106_OFF	1
-../Core/Src/OLED/SH1106.c:511:6:SH1106_I2C_WriteMulti	2
-../Core/Src/OLED/SH1106.c:521:6:SH1106_I2C_Write	1
-../Core/Src/OLED/SH1106.c:528:6:SH1106_InvertDisplay	2
-../Core/Src/OLED/SH1106.c:537:6:SH1106_DrawBitmap	7
+../Core/Src/OLED/SH1106.c:501:6:SH1106_ON	1
+../Core/Src/OLED/SH1106.c:506:6:SH1106_OFF	1
+../Core/Src/OLED/SH1106.c:512:6:SH1106_I2C_WriteMulti	2
+../Core/Src/OLED/SH1106.c:522:6:SH1106_I2C_Write	1
+../Core/Src/OLED/SH1106.c:529:6:SH1106_InvertDisplay	2
+../Core/Src/OLED/SH1106.c:538:6:SH1106_DrawBitmap	7

@@ -75,27 +75,71 @@ void MLX90640_Process(void);
 void MLX90640_Setup(void)
 {
     int status;
-    char buffer[50];
+    char buffer[80];
 
-    MLX90640_SetChessMode(MLX90640_ADDR);
+    int chessStatus = MLX90640_SetChessMode(MLX90640_ADDR);
     // Thiết lập tốc độ làm tươi (Refresh Rate). Ví dụ: 0x03 = 4Hz, 0x04 = 8Hz
-    MLX90640_SetRefreshRate(MLX90640_ADDR, 0x06);
+    int rrStatus = MLX90640_SetRefreshRate(MLX90640_ADDR, 0x04);
 
-    // Đọc toàn bộ bộ nhớ EEPROM của cảm biến
-    status = MLX90640_DumpEE(MLX90640_ADDR, eeMLX90640);
+    // Kiểm tra 2 lệnh cấu hình trên có thực sự ghi xuống cảm biến thành công không,
+    // và đọc lại thanh ghi điều khiển (0x800D) để xác nhận giá trị đã được áp dụng.
+    sprintf(buffer, "ChessMode=%d RefreshRate=%d\r\n", chessStatus, rrStatus);
+    HAL_UART_Transmit(&huart4, (uint8_t*)buffer, strlen(buffer), 50);
+
+    uint16_t ctrlReg = 0;
+    MLX90640_I2CRead(MLX90640_ADDR, 0x800D, 1, &ctrlReg);
+    sprintf(buffer, "ControlReg(0x800D)=0x%04X\r\n", ctrlReg);
+    HAL_UART_Transmit(&huart4, (uint8_t*)buffer, strlen(buffer), 50);
+
+    // Đọc toàn bộ bộ nhớ EEPROM của cảm biến.
+    // Thử lại vài lần: nếu lỗi -3..-6 lặp lại y hệt ở mọi lần đọc -> rất có thể
+    // là dữ liệu hiệu chuẩn gốc của cảm biến, không phải do nhiễu I2C.
+    int retry;
+    for (retry = 0; retry < 3; retry++)
+    {
+        status = MLX90640_DumpEE(MLX90640_ADDR, eeMLX90640);
+        if (status == 0) break;
+
+        sprintf(buffer, "Loi doc EEPROM (lan %d/3): %d\r\n", retry + 1, status);
+        HAL_UART_Transmit(&huart4, (uint8_t*)buffer, strlen(buffer), 50);
+        HAL_Delay(10);
+    }
+
+    char debugMsg[100];
+    sprintf(debugMsg, "EEPROM[0]=0x%04X | EEPROM[1]=0x%04X\r\n", eeMLX90640[0], eeMLX90640[1]);
+    HAL_UART_Transmit(&huart4, (uint8_t*)debugMsg, strlen(debugMsg), 100);
+
     if (status != 0)
     {
-        sprintf(buffer, "Loi doc EEPROM!\r\n");
+        // -1/-2: lỗi I2C thật sự (NACK/timeout) -> không có dữ liệu hợp lệ, dừng hẳn
+        // thay vì chạy tiếp với mảng eeMLX90640 rỗng/rác.
+        sprintf(buffer, "Loi doc EEPROM sau 3 lan, dung lai!\r\n");
         HAL_UART_Transmit(&huart4, (uint8_t*)buffer, strlen(buffer), 50);
+        while (1) { HAL_Delay(500); }
     }
 
     // Trích xuất các hệ số hiệu chuẩn vào struct
     status = MLX90640_ExtractParameters(eeMLX90640, &mlx90640Params);
     if (status != 0)
     {
-        sprintf(buffer, "Loi trich xuat tham so!\r\n");
-        HAL_UART_Transmit_DMA(&huart4, (uint8_t*)buffer, strlen(buffer));
+        // -3 (>4 broken pixel), -4 (>4 outlier), -5 (tong > 4), -6 (2 pixel loi ke nhau):
+        // đây chỉ là CẢNH BÁO về vài pixel trong EEPROM, các hệ số hiệu chuẩn khác
+        // (Vdd, Ta, Gain, Offset, Alpha...) vẫn được tính đầy đủ phía trên hàm này.
+        // KHÔNG dừng chương trình vì lỗi này - nếu dừng, sẽ không bao giờ có ảnh.
+        sprintf(buffer, "Canh bao trich xuat (khong chan chuong trinh): %d\r\n", status);
+        HAL_UART_Transmit(&huart4, (uint8_t*)buffer, strlen(buffer), 50);
     }
+    char dbg3[160];
+            int n3 = sprintf(dbg3,
+                "EE[16]=0x%04X EE[49]=0x%04X EE[50]=0x%04X EE[51]=0x%04X\r\n",
+                eeMLX90640[16], eeMLX90640[49], eeMLX90640[50], eeMLX90640[51]);
+            HAL_UART_Transmit(&huart4, (uint8_t*)dbg3, n3, 50);
+
+            n3 = sprintf(dbg3,
+                "kVdd=%.1f vdd25=%.1f KvPTAT=%.5f KtPTAT=%.2f vPTAT25=%.1f alphaPTAT=%.2f\r\n",
+                (float)mlx90640Params.kVdd, (float)mlx90640Params.vdd25, mlx90640Params.KvPTAT,
+                mlx90640Params.KtPTAT, (float)mlx90640Params.vPTAT25, mlx90640Params.alphaPTAT);
+            HAL_UART_Transmit(&huart4, (uint8_t*)dbg3, n3, 50);
 }
 
 // Đọc khung hình và gửi qua UART
@@ -108,33 +152,59 @@ void MLX90640_Process(void)
     // Đọc dữ liệu thô từ cảm biến
     subpage = MLX90640_GetFrameData(MLX90640_ADDR, frame);
 
-    if (subpage >= 0)
-    { // Đọc thành công
-    	vdd = MLX90640_GetVdd(frame, &mlx90640Params);
-    	ta = MLX90640_GetTa(frame, &mlx90640Params);
-    	tr = ta - 8.0f;
-        // Tính toán ra nhiệt độ tuyệt đối (To)
-        MLX90640_CalculateTo(frame, &mlx90640Params, emissivity, tr, MLX90640To);
+    // DEBUG TẠM THỜI: in subpage ở MỌI lần gọi (kể cả khi hợp lệ) để biết
+     // vòng lặp có đang chạy hay bị "treo" bên trong MLX90640_GetFrameData().
+     // Xóa khối này sau khi xác định được nguyên nhân.
 
-        if (subpage == 1)
-        {
-        	int offset = 0;
-			for (int i = 0; i < 768; i++)
-			{
-                    offset += sprintf(txBuff + offset, "%5.2f ", MLX90640To[i]);
+         char dbg[32];
+         int n = sprintf(dbg, "[Frame] subpage=%d\r\n", subpage);
+         HAL_UART_Transmit(&huart4, (uint8_t*)dbg, n, 50);
 
-                    // Nếu đã in đủ 32 cột thì xuống dòng để bắt đầu hàng mới
-                    if ((i + 1) % 32 == 0)
-                    {
-                        offset += sprintf(txBuff + offset, "\r\n");
-                    }
-            }
-                // In thêm vạch phân cách giữa các khung hình (Frames) để dễ nhìn
-			offset += sprintf(txBuff + offset, "--------------------------------------------------\r\n");
-			HAL_UART_Transmit_DMA(&huart4, (uint8_t*)txBuff, offset);
-        }
-        //HAL_Delay(250);
-    }
+
+         if (subpage < 0) {
+              char errBuf[50];
+              sprintf(errBuf, "Loi Frame: %d\r\n", subpage);
+              HAL_UART_Transmit(&huart4, (uint8_t*)errBuf, strlen(errBuf), 100);
+          }
+          if (subpage >= 0)
+          { // Đọc thành công
+          	vdd = MLX90640_GetVdd(frame, &mlx90640Params);
+          	ta = MLX90640_GetTa(frame, &mlx90640Params);
+          	tr = ta - 8.0f;
+
+          	// DEBUG TẠM THỜI: kiểm tra vdd/ta/tr - nếu ta bất thường (vd vài trăm độ)
+          	// thì đó chính là nguyên nhân toàn bộ ảnh bị lệch nhiệt độ rất cao.
+
+          	    char dbg2[64];
+          	    int n2 = sprintf(dbg2, "vdd=%.3f ta=%.2f tr=%.2f\r\n", vdd, ta, tr);
+          	    HAL_UART_Transmit(&huart4, (uint8_t*)dbg2, n2, 50);
+
+
+              // Tính toán ra nhiệt độ tuyệt đối (To)
+              MLX90640_CalculateTo(frame, &mlx90640Params, emissivity, tr, MLX90640To);
+
+              // TẠM THỜI: gửi mỗi khi đọc frame hợp lệ, KHÔNG chờ subpage==1 nữa.
+              // (Bình thường nên đợi subpage==1 để có 1 ảnh đầy đủ/mới nhất, nhưng vì
+              // subpage đang bị kẹt ở 0, ta bỏ điều kiện này để xác nhận pipeline
+              // tính toán + gửi UART có hoạt động hay không.)
+              {
+              	int offset = 0;
+      			for (int i = 0; i < 768; i++)
+      			{
+                          offset += sprintf(txBuff + offset, "%5.2f ", MLX90640To[i]);
+
+                          // Nếu đã in đủ 32 cột thì xuống dòng để bắt đầu hàng mới
+                          if ((i + 1) % 32 == 0)
+                          {
+                              offset += sprintf(txBuff + offset, "\r\n");
+                          }
+                  }
+                      // In thêm vạch phân cách giữa các khung hình (Frames) để dễ nhìn
+      			offset += sprintf(txBuff + offset, "--------------------------------------------------\r\n");
+      			HAL_UART_Transmit(&huart4, (uint8_t*)txBuff, offset, HAL_MAX_DELAY);
+              }
+              //HAL_Delay(250);
+          }
 }
 /* USER CODE END 0 */
 

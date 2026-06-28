@@ -1,2 +1,4 @@
-../Core/Src/sensors/SHT30.c:9:19:SHT30_Read	3
-../Core/Src/sensors/SHT30.c:28:9:SHT30_CRC	4
+../Core/Src/sensors/SHT30.c:15:19:SHT30_Read	5
+../Core/Src/sensors/SHT30.c:41:9:SHT30_CRC	4
+../Core/Src/sensors/SHT30.c:59:9:SHT30_CheckCRC	1
+../Core/Src/sensors/SHT30.c:67:7:SHT30_CalcDewPoint	2

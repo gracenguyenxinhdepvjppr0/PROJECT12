@@ -7,6 +7,7 @@
 #include "Ethernet/W5500_MQTT.h"
 #include "main.h"
 
+extern UART_HandleTypeDef huart1;
 static uint8_t dns_buffer[1024];
 /* =====================================================================
  * GIAO TIẾP SPI VỚI STM32
@@ -30,7 +31,7 @@ static void W5500_WriteByte(uint8_t byte)
 
 static uint8_t W5500_ReadByte(void)
 {
-	uint8_t dummy_tx = 0xFF; // Gửi 1 byte rác (0xFF) để tạo xung Clock
+	uint8_t dummy_tx = 0x00; // Gửi 1 byte rác (0x00) để tạo xung Clock
 	uint8_t rx_data;
 	// Vừa gửi byte rác đi, vừa hứng byte dữ liệu thật về
 	HAL_SPI_TransmitReceive(W5500_SPI_HANDLE, &dummy_tx, &rx_data, 1, 100);
@@ -53,14 +54,9 @@ uint8_t W5500_Hardware_Init(void)
     reg_wizchip_spi_cbfunc(W5500_ReadByte, W5500_WriteByte);
     reg_wizchip_spiburst_cbfunc(W5500_ReadBurst, W5500_WriteBurst);
 
-    uint8_t version = getVERSIONR();
-    if (version != 0x04)
-    {
-
-    	return 0; // Thất bại thực sự
-    }
     // Cấu hình buffer 2KB cho 8 Socket
     uint8_t rx_tx_buff_sizes[] = {2, 2, 2, 2, 2, 2, 2, 2};
+
     if (wizchip_init(rx_tx_buff_sizes, rx_tx_buff_sizes) != 0)
     {
         return 0; // Thất bại
@@ -183,12 +179,22 @@ void W5500_DHCP_Init(uint8_t* mac_address)
 
 uint8_t W5500_DHCP_Run(void)
 {
-    static uint32_t timer_1s = 0;
+	static uint32_t timer_1s = 0;
 
-    uint8_t dhcp_state = DHCP_run();
-    if (dhcp_state == DHCP_FAILED) is_ip_assigned = 0;
+	if (HAL_GetTick() - timer_1s >= 1000)
+	{
+		timer_1s = HAL_GetTick();
+		DHCP_time_handler();
+	}
 
-    return is_ip_assigned;
+	uint8_t dhcp_state = DHCP_run();
+
+	if (dhcp_state == DHCP_FAILED)
+	{
+		is_ip_assigned = 0;
+	}
+
+	return is_ip_assigned;
 }
 
 uint8_t W5500_DNS_Resolve(char* domain_name, uint8_t* resolved_ip)

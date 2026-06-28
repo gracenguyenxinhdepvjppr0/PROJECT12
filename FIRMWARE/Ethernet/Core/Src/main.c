@@ -209,15 +209,18 @@ int main(void)
   HAL_UART_Transmit(&huart1, (uint8_t*)msg, strlen(msg), 100);
 
   uint8_t v = getVERSIONR();
-  if (W5500_Hardware_Init() == 1) {
-        char msg_spi[] = "W5500 SPI Init OK!\r\n";
-        HAL_UART_Transmit(&huart1, (uint8_t*)msg_spi, strlen(msg_spi), 100);
-    } else {
-        char msg_spi_err[] = "W5500 SPI Init FAILED!\r\n";
-        HAL_UART_Transmit(&huart1, (uint8_t*)msg_spi_err, strlen(msg_spi_err), 100);
-        sprintf(msg_spi_err, "SPI ERROR! Doc Version W5500 ra %d (Mong doi: 4)\r\n", v);
-        HAL_UART_Transmit(&huart1, (uint8_t*)msg_spi_err, strlen(msg_spi_err), 100);
-    }
+  if (W5500_Hardware_Init() == 1)
+  {
+	  char msg_spi[] = "W5500 SPI Init OK!\r\n";
+	  HAL_UART_Transmit(&huart1, (uint8_t*)msg_spi, strlen(msg_spi), 100);
+  }
+  else
+  {
+	  char msg_spi_err[] = "W5500 SPI Init FAILED!\r\n";
+	  HAL_UART_Transmit(&huart1, (uint8_t*)msg_spi_err, strlen(msg_spi_err), 100);
+	  sprintf(msg_spi_err, "SPI ERROR! Doc Version W5500 ra %d (Mong doi: 4)\r\n", v);
+      HAL_UART_Transmit(&huart1, (uint8_t*)msg_spi_err, strlen(msg_spi_err), 100);
+  }
 
   W5500_DHCP_Init(mac_addr);
   NetworkInit(&network, MQTT_SOCKET);
@@ -233,7 +236,6 @@ int main(void)
   while (1)
   {
 	  // Duy trì mạng DHCP
-	  // Duy trì mạng DHCP
 	        if (W5500_DHCP_Run() == 1)
 	        {
 	            // 1. DỊCH TÊN MIỀN
@@ -242,7 +244,6 @@ int main(void)
 	                char msg_dns1[] = "Converting ThingsBoard domain...\r\n";
 	                HAL_UART_Transmit(&huart1, (uint8_t*)msg_dns1, strlen(msg_dns1), 100);
 
-	                // CHÚ Ý: Đã đổi sang bản EU Cloud (thingsboard.cloud)
 	                if (W5500_DNS_Resolve("eu.thingsboard.cloud", broker_ip) == 1)
 	                {
 	                    sprintf(buf, "DNS Success! IP: %d.%d.%d.%d\r\n", broker_ip[0], broker_ip[1], broker_ip[2], broker_ip[3]);

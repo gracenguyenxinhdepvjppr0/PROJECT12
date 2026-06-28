@@ -33,11 +33,11 @@ Idx Name          Size      VMA       LMA       File off  Algn
                   CONTENTS, READONLY, DEBUGGING, OCTETS
  14 .debug_macro  00035ee6  00000000  00000000  0003e604  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 15 .debug_line   000203b0  00000000  00000000  000744ea  2**0
+ 15 .debug_line   000203ae  00000000  00000000  000744ea  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 16 .debug_str    0014ecaa  00000000  00000000  0009489a  2**0
+ 16 .debug_str    0014ecaa  00000000  00000000  00094898  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 17 .comment      00000043  00000000  00000000  001e3544  2**0
+ 17 .comment      00000043  00000000  00000000  001e3542  2**0
                   CONTENTS, READONLY
  18 .debug_frame  00007ab0  00000000  00000000  001e3588  2**2
                   CONTENTS, READONLY, DEBUGGING, OCTETS
@@ -16257,12 +16257,13 @@ int main(void)
  8007c54:	f7fc f8d0 	bl	8003df8 <WIZCHIP_READ>
  8007c58:	4603      	mov	r3, r0
  8007c5a:	f887 3192 	strb.w	r3, [r7, #402]	@ 0x192
-  if (W5500_Hardware_Init() == 1) {
+  if (W5500_Hardware_Init() == 1)
  8007c5e:	f7ff fcb7 	bl	80075d0 <W5500_Hardware_Init>
  8007c62:	4603      	mov	r3, r0
  8007c64:	2b01      	cmp	r3, #1
  8007c66:	d118      	bne.n	8007c9a <main+0x9e>
-        char msg_spi[] = "W5500 SPI Init OK!\r\n";
+  {
+	  char msg_spi[] = "W5500 SPI Init OK!\r\n";
  8007c68:	4b96      	ldr	r3, [pc, #600]	@ (8007ec4 <main+0x2c8>)
  8007c6a:	f107 04f4 	add.w	r4, r7, #244	@ 0xf4
  8007c6e:	461d      	mov	r5, r3
@@ -16272,7 +16273,7 @@ int main(void)
  8007c78:	6020      	str	r0, [r4, #0]
  8007c7a:	3404      	adds	r4, #4
  8007c7c:	7021      	strb	r1, [r4, #0]
-        HAL_UART_Transmit(&huart1, (uint8_t*)msg_spi, strlen(msg_spi), 100);
+	  HAL_UART_Transmit(&huart1, (uint8_t*)msg_spi, strlen(msg_spi), 100);
  8007c7e:	f107 03f4 	add.w	r3, r7, #244	@ 0xf4
  8007c82:	4618      	mov	r0, r3
  8007c84:	f7f8 fb94 	bl	80003b0 <strlen>
@@ -16283,8 +16284,10 @@ int main(void)
  8007c92:	488b      	ldr	r0, [pc, #556]	@ (8007ec0 <main+0x2c4>)
  8007c94:	f006 f8a3 	bl	800ddde <HAL_UART_Transmit>
  8007c98:	e02b      	b.n	8007cf2 <main+0xf6>
-    } else {
-        char msg_spi_err[] = "W5500 SPI Init FAILED!\r\n";
+  }
+  else
+  {
+	  char msg_spi_err[] = "W5500 SPI Init FAILED!\r\n";
  8007c9a:	4b8b      	ldr	r3, [pc, #556]	@ (8007ec8 <main+0x2cc>)
  8007c9c:	f107 04d8 	add.w	r4, r7, #216	@ 0xd8
  8007ca0:	461d      	mov	r5, r3
@@ -16293,7 +16296,7 @@ int main(void)
  8007ca6:	e895 0007 	ldmia.w	r5, {r0, r1, r2}
  8007caa:	c403      	stmia	r4!, {r0, r1}
  8007cac:	7022      	strb	r2, [r4, #0]
-        HAL_UART_Transmit(&huart1, (uint8_t*)msg_spi_err, strlen(msg_spi_err), 100);
+	  HAL_UART_Transmit(&huart1, (uint8_t*)msg_spi_err, strlen(msg_spi_err), 100);
  8007cae:	f107 03d8 	add.w	r3, r7, #216	@ 0xd8
  8007cb2:	4618      	mov	r0, r3
  8007cb4:	f7f8 fb7c 	bl	80003b0 <strlen>
@@ -16303,13 +16306,13 @@ int main(void)
  8007cc0:	2364      	movs	r3, #100	@ 0x64
  8007cc2:	487f      	ldr	r0, [pc, #508]	@ (8007ec0 <main+0x2c4>)
  8007cc4:	f006 f88b 	bl	800ddde <HAL_UART_Transmit>
-        sprintf(msg_spi_err, "SPI ERROR! Doc Version W5500 ra %d (Mong doi: 4)\r\n", v);
+	  sprintf(msg_spi_err, "SPI ERROR! Doc Version W5500 ra %d (Mong doi: 4)\r\n", v);
  8007cc8:	f897 2192 	ldrb.w	r2, [r7, #402]	@ 0x192
  8007ccc:	f107 03d8 	add.w	r3, r7, #216	@ 0xd8
  8007cd0:	497e      	ldr	r1, [pc, #504]	@ (8007ecc <main+0x2d0>)
  8007cd2:	4618      	mov	r0, r3
  8007cd4:	f009 fcc2 	bl	801165c <siprintf>
-        HAL_UART_Transmit(&huart1, (uint8_t*)msg_spi_err, strlen(msg_spi_err), 100);
+      HAL_UART_Transmit(&huart1, (uint8_t*)msg_spi_err, strlen(msg_spi_err), 100);
  8007cd8:	f107 03d8 	add.w	r3, r7, #216	@ 0xd8
  8007cdc:	4618      	mov	r0, r3
  8007cde:	f7f8 fb67 	bl	80003b0 <strlen>
@@ -16319,7 +16322,7 @@ int main(void)
  8007cea:	2364      	movs	r3, #100	@ 0x64
  8007cec:	4874      	ldr	r0, [pc, #464]	@ (8007ec0 <main+0x2c4>)
  8007cee:	f006 f876 	bl	800ddde <HAL_UART_Transmit>
-    }
+  }
 
   W5500_DHCP_Init(mac_addr);
  8007cf2:	4877      	ldr	r0, [pc, #476]	@ (8007ed0 <main+0x2d4>)
@@ -16346,10 +16349,10 @@ int main(void)
   uint32_t last_dhcp_log = 0; // tránh spam log DHCP quá nhanh
  8007d1e:	2300      	movs	r3, #0
  8007d20:	f8c7 3194 	str.w	r3, [r7, #404]	@ 0x194
+  /* Infinite loop */
   /* USER CODE BEGIN WHILE */
   while (1)
   {
-	  // Duy trì mạng DHCP
 	  // Duy trì mạng DHCP
 	        if (W5500_DHCP_Run() == 1)
  8007d24:	f7ff fe1c 	bl	8007960 <W5500_DHCP_Run>
@@ -16391,7 +16394,6 @@ int main(void)
  8007d6e:	4854      	ldr	r0, [pc, #336]	@ (8007ec0 <main+0x2c4>)
  8007d70:	f006 f835 	bl	800ddde <HAL_UART_Transmit>
 
-	                // CHÚ Ý: Đã đổi sang bản EU Cloud (thingsboard.cloud)
 	                if (W5500_DNS_Resolve("eu.thingsboard.cloud", broker_ip) == 1)
  8007d74:	495d      	ldr	r1, [pc, #372]	@ (8007eec <main+0x2f0>)
  8007d76:	485e      	ldr	r0, [pc, #376]	@ (8007ef0 <main+0x2f4>)
